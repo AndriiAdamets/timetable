@@ -134,7 +134,7 @@ Meteor.startup ->
 		Timetable.insert(
 			group: Groups.findOne(Title:"СИИ2")._id,
 			classes: {
-				but: {
+				bot: {
 					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
 					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
 					classRoom: 402
@@ -167,42 +167,64 @@ Meteor.startup ->
 			dayNo: 2,
 			classNo: 5
 		)
-		# Timetable.insert(
-		# 	group: Groups.findOne(Title:"СИИ2")._id, 
-		# 	subject: Subjects.findOne(Title:"WEB-дизайн")._id,
-		# 	lecturer: Lecturers.findOne(Name: "Наталья Андреевна")._id,
-		# 	dayNo: 2,
-		# 	weekNum: 1,
-		# 	classNo: 6,
-		# 	classRoom: 409
-		# )
-		# Timetable.insert(
-		# 	group: Groups.findOne(Title:"СИИ2")._id, 
-		# 	subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-		# 	lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id,
-		# 	dayNo: 2,
-		# 	weekNum: 2,
-		# 	classNo: 6,
-		# 	classRoom: 408
-		# )
-		# Timetable.insert(
-		# 	group: Groups.findOne(Title:"СИИ2")._id, 
-		# 	subject: Subjects.findOne(Title:"Вычислительный Интелект")._id,
-		# 	lecturer: Lecturers.findOne(Name: "С В")._id,
-		# 	dayNo: 3,
-		# 	weekNum: 2,
-		# 	classNo: 1,
-		# 	classRoom: 408
-		# )
-		# Timetable.insert(
-		# 	group: Groups.findOne(Title:"СИИ2")._id, 
-		# 	subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
-		# 	lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
-		# 	dayNo: 3,
-		# 	weekNum: 2,
-		# 	classNo: 3,
-		# 	classRoom: 402
-		# )
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				top: {
+					subject: Subjects.findOne(Title:"WEB-дизайн")._id
+					lecturer: Lecturers.findOne(Name: "Наталья Андреевна")._id
+					classRoom: 409
+				}
+				bot: {
+					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+					classRoom: 408
+				}
+			}
+			dayNo: 2
+			classNo: 6
+		)
+		
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				bot: {
+						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
+						lecturer: Lecturers.findOne(Name: "С В")._id
+						classRoom: 408
+				}
+			}
+			dayNo: 3
+			classNo: 1
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				bot: {
+						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						classRoom: 402
+				}
+			}
+			dayNo: 3
+			classNo: 2
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						classRoom: 416
+				}
+			}
+			dayNo: 3
+			classNo: 4
+		)
+
 		# Timetable.insert(
 		# 	group: Groups.findOne(Title:"СИИ2")._id, 
 		# 	subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,

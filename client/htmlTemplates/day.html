@@ -2,12 +2,42 @@
 	<tr>
 		<td rowspan="{{classesCount}}">{{dayTitle}}</td>
 	</tr>
-		{{#each classesNums}}
+		{{#each arrayify value}}
 		<tr>
-		<td>{{this}}</td>
-		{{#each groups}}
-		<td>{{classes}}</td>
-		{{/each}}
+			<td>{{name}}</td>
+			{{#each arrayify value}}
+				{{#if value.all}}
+					<td>
+						{{allSubj}}
+						<br>
+						{{allLect}}
+						<br>
+						{{value.all.classRoom}}
+					</td>
+				{{else}}
+					<td>
+						{{#if value.top}}
+							{{topSubj}}
+							<br>
+							{{topLect}}
+							<br>
+							{{value.top.classRoom}}
+						{{else}}
+							-
+						{{/if}}
+						<hr>
+						{{#if value.bot}}
+							{{botSubj}}
+							<br>
+							{{botLect}}
+							<br>
+							{{value.bot.classRoom}}
+						{{else}}
+							-
+						{{/if}}
+					</td>
+				{{/if}}
+			{{/each}}
 		</tr>
 		{{/each}}
 </template>

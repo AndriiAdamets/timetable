@@ -14,17 +14,8 @@
 		<h3>Загрузка информации</h3>
 	{{else}}
 		<table id="timetable_all" class="table table-bordered">
-			<thead>
-				<tr>
-					<td></td>
-					<td>№</td>
-					{{#each groups}}
-						<td>{{Title}}</td>
-					{{/each}}
-				</tr>
-			</thead>
 			<tbody>
-			{{#each workDays}}
+			{{#each arrayify workDays}}
 				{{> dayTimetable}}
 			{{/each}}
 			</tbody>
