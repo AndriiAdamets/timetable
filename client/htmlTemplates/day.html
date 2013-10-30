@@ -1,0 +1,23 @@
+<template name="dayTimetable">
+	<tr>
+		<td rowspan="{{classesCount}}">{{dayTitle}}</td>
+	</tr>
+		{{#each classesNums}}
+		<tr>
+		<td>{{this}}</td>
+		{{#each groups}}
+		<td>{{classes}}</td>
+		{{/each}}
+		</tr>
+		{{/each}}
+</template>
+
+<template name="singleClass">
+	<td></td>
+</template>
+
+<template name="doubleClass">
+	<td>
+		<hr>
+	</td>
+</template>

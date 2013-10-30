@@ -1,0 +1,33 @@
+<head>
+	<title>Расписание занятий</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Расписание занятий физико-технического факультета</h1>
+		<hr>
+		{{> mainTable}}	
+	</div>
+</body>
+
+<Template name="mainTable">
+	{{#if loading}}
+		<h3>Загрузка информации</h3>
+	{{else}}
+		<table id="timetable_all" class="table table-bordered">
+			<thead>
+				<tr>
+					<td></td>
+					<td>№</td>
+					{{#each groups}}
+						<td>{{Title}}</td>
+					{{/each}}
+				</tr>
+			</thead>
+			<tbody>
+			{{#each workDays}}
+				{{> dayTimetable}}
+			{{/each}}
+			</tbody>
+		</table>
+	{{/if}}
+</Template>
