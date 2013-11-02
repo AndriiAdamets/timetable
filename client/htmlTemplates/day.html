@@ -1,6 +1,6 @@
 <template name="dayTimetable">
 	<tr>
-		<td rowspan="{{classesCount}}">{{dayTitle}}</td>
+		<td id="{{this.name}}" rowspan="{{classesCount}}">{{dayTitle}}</td>
 	</tr>
 		{{#each arrayify value}}
 		<tr>

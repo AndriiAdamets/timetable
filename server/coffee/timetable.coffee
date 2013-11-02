@@ -15,7 +15,7 @@ Meteor.startup ->
 		adm = 
 			username: "admin"
 			password: "admin"
-			provile:
+			profile:
 				type: "admin"
 		Accounts.createUser adm
 	else
@@ -67,11 +67,18 @@ Meteor.startup ->
 			Soname: "Быковская",
 			Name: "Наталья Владиславовна"
 			)
+		Lecturers.insert(
+			Soname: "Кожемякин",
+			Name: "Юрий Алексеевич"
+			)
 		console.log "Lecturers was added to DB"
 	else
 		console.log Lecturers.find().count()+" lecturers in DB"
 
 	if Subjects.find().count() is 0
+		Subjects.insert(
+			Title: "Безопасность и защита данных"
+			)
 		Subjects.insert(
 			Title: "Вычислительный Интелект"
 			)
@@ -102,13 +109,30 @@ Meteor.startup ->
 		Subjects.insert(
 			Title: "Технологии Искуственного Интелекта"
 			)
+		Subjects.insert(
+			Title: "Оборудование компьютерных сетей"
+			)
 		console.log "Subjects was added to DB"
 	else
 		console.log Subjects.find().count()+" subjects in DB"
 
 	if Groups.find().count() is 0
 		Groups.insert(
+			Title: "СИИ1",
+			Type: "Специалист",
+			Department: "Физико-технический",
+			Year: "2013"
+			)
+
+		Groups.insert(
 			Title: "СИИ2",
+			Type: "Специалист",
+			Department: "Физико-технический",
+			Year: "2013"
+			)
+
+		Groups.insert(
+			Title: "СИИ3",
 			Type: "Специалист",
 			Department: "Физико-технический",
 			Year: "2013"
@@ -119,6 +143,20 @@ Meteor.startup ->
 
 
 	if Timetable.find().count() is 0
+		# ============================Понедельник===================================
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id,
+			classes: {
+				all: {
+					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					classRoom: 408		
+				}
+			},
+			dayNo: 1,
+			classNo: 1
+		)
+
 		Timetable.insert(
 			group: Groups.findOne(Title:"СИИ2")._id,
 			classes: {
@@ -130,6 +168,31 @@ Meteor.startup ->
 			},
 			dayNo: 1,
 			classNo: 1
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id,
+			classes: {
+				all: {
+					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					classRoom: 408		
+				}
+			},
+			dayNo: 1,
+			classNo: 1
+		)
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id,
+			classes: {
+				top: {
+					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					classRoom: 402
+				}
+			},
+			dayNo: 1,
+			classNo: 2
 		)
 		Timetable.insert(
 			group: Groups.findOne(Title:"СИИ2")._id,
@@ -143,6 +206,33 @@ Meteor.startup ->
 			dayNo: 1,
 			classNo: 2
 		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id,
+			classes: {
+				bot: {
+					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					classRoom: 402
+				}
+			},
+			dayNo: 1,
+			classNo: 3
+		)
+		# ============================Вторник===================================
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id,
+			classes: {
+				bot: {
+					subject: Subjects.findOne(Title:"Безопасность и защита данных")._id,
+					lecturer: Lecturers.findOne(Name: "Олег Сергеевич")._id,
+					classRoom: 416
+				}
+			},
+			dayNo: 2,
+			classNo: 4
+		)
+
 		Timetable.insert(
 			group: Groups.findOne(Title:"СИИ2")._id,
 			classes: {
@@ -155,6 +245,33 @@ Meteor.startup ->
 			dayNo: 2,
 			classNo: 4
 		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id,
+			classes: {
+				all: {
+					subject: Subjects.findOne(Title:"WEB-дизайн")._id,
+					lecturer: Lecturers.findOne(Name: "Наталья Андреевна")._id,
+					classRoom: 402
+				}
+			},
+			dayNo: 2,
+			classNo: 4
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				all: {
+					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id,
+					classRoom: 416
+				}
+			}
+			dayNo: 2,
+			classNo: 5
+		)
+
 		Timetable.insert(
 			group: Groups.findOne(Title:"СИИ2")._id
 			classes: {
@@ -166,6 +283,37 @@ Meteor.startup ->
 			}
 			dayNo: 2,
 			classNo: 5
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				all: {
+					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id,
+					classRoom: 416
+				}
+			}
+			dayNo: 2,
+			classNo: 5
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				top: {
+					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+					classRoom: 413
+				}
+				bot: {
+					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+					classRoom: 408
+				}
+			}
+			dayNo: 2
+			classNo: 6
 		)
 
 		Timetable.insert(
@@ -185,7 +333,33 @@ Meteor.startup ->
 			dayNo: 2
 			classNo: 6
 		)
-		
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				bot: {
+					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+					classRoom: 408
+				}
+			}
+			dayNo: 2
+			classNo: 6
+		)
+		# ============================Среда===================================
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				bot: {
+						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
+						lecturer: Lecturers.findOne(Name: "С В")._id
+						classRoom: 408
+				}
+			}
+			dayNo: 3
+			classNo: 2
+		)
+
 		Timetable.insert(
 			group: Groups.findOne(Title:"СИИ2")._id
 			classes: {
@@ -196,7 +370,33 @@ Meteor.startup ->
 				}
 			}
 			dayNo: 3
-			classNo: 1
+			classNo: 2
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				bot: {
+						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
+						lecturer: Lecturers.findOne(Name: "С В")._id
+						classRoom: 408
+				}
+			}
+			dayNo: 3
+			classNo: 2
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				top: {
+						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						classRoom: 402
+				}
+			}
+			dayNo: 3
+			classNo: 3
 		)
 
 		Timetable.insert(
@@ -209,7 +409,20 @@ Meteor.startup ->
 				}
 			}
 			dayNo: 3
-			classNo: 2
+			classNo: 3
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						classRoom: 416
+				}
+			}
+			dayNo: 3
+			classNo: 4
 		)
 
 		Timetable.insert(
@@ -223,6 +436,227 @@ Meteor.startup ->
 			}
 			dayNo: 3
 			classNo: 4
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						classRoom: 416
+				}
+			}
+			dayNo: 3
+			classNo: 4
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				bot: {
+						subject: Subjects.findOne(Title:"Безопасность и защита данных")._id
+						lecturer: Lecturers.findOne(Name: "Олег Сергеевич")._id
+						classRoom: 415
+				}
+			}
+			dayNo: 3
+			classNo: 5
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
+						lecturer: Lecturers.findOne(Name: "С В")._id
+						classRoom: 408
+				}
+			}
+			dayNo: 3
+			classNo: 5
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
+						lecturer: Lecturers.findOne(Name: "С В")._id
+						classRoom: 408
+				}
+			}
+			dayNo: 3
+			classNo: 6
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
+						lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+						classRoom: 408
+				}
+			}
+			dayNo: 3
+			classNo: 6
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
+						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id
+						classRoom: 408
+				}
+			}
+			dayNo: 3
+			classNo: 6
+		)
+		# ============================Четверг===================================
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Рендеринг")._id,
+						lecturer: Lecturers.findOne(Name: "Игорь Григорьевич")._id,
+						classRoom: 416
+				}
+			}
+			dayNo: 4
+			classNo: 2
+		)
+		
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Рендеринг")._id,
+						lecturer: Lecturers.findOne(Name: "Игорь Григорьевич")._id,
+						classRoom: 416
+				}
+			}
+			dayNo: 4
+			classNo: 2
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Рендеринг")._id,
+						lecturer: Lecturers.findOne(Name: "Игорь Григорьевич")._id,
+						classRoom: 416
+				}
+			}
+			dayNo: 4
+			classNo: 3
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Рендеринг")._id,
+						lecturer: Lecturers.findOne(Name: "Игорь Григорьевич")._id,
+						classRoom: 416
+				}
+			}
+			dayNo: 4
+			classNo: 3
+		)
+		# ============================Пятница===================================
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Оборудование компьютерных сетей")._id,
+						lecturer: Lecturers.findOne(Name: "Юрий Алексеевич")._id,
+						classRoom: 312
+				}
+			}
+			dayNo: 5
+			classNo: 1
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						classRoom: 408
+				}
+			}
+			dayNo: 5
+			classNo: 3
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						classRoom: 408
+				}
+			}
+			dayNo: 5
+			classNo: 3
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				all: {
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						classRoom: 408
+				}
+			}
+			dayNo: 5
+			classNo: 3
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ1")._id
+			classes: {
+				top: {
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						classRoom: 415
+				}
+			}
+			dayNo: 5
+			classNo: 4
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ2")._id
+			classes: {
+				bot: {
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						classRoom: 415
+				}
+			}
+			dayNo: 5
+			classNo: 4
+		)
+
+		Timetable.insert(
+			group: Groups.findOne(Title:"СИИ3")._id
+			classes: {
+				bot: {
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						classRoom: 409
+				}
+			}
+			dayNo: 5
+			classNo: 6
 		)
 
 		# Timetable.insert(

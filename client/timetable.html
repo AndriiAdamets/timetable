@@ -5,7 +5,12 @@
 	<div class="container">
 		<h1>Расписание занятий физико-технического факультета</h1>
 		<hr>
-		{{> mainTable}}	
+		<div class="row">
+			<div class="span3">
+				{{> daysList}}
+			</div>
+			<div class="span9">{{> mainTable}}</div>
+		</div>
 	</div>
 </body>
 
@@ -14,11 +19,30 @@
 		<h3>Загрузка информации</h3>
 	{{else}}
 		<table id="timetable_all" class="table table-bordered">
+			<thead>
+				<td></td>
+				<td>№</td>
+				{{#each groups}}
+				<td>{{Title}}</td>
+				{{/each}}
+			</thead>
 			<tbody>
 			{{#each arrayify workDays}}
 				{{> dayTimetable}}
 			{{/each}}
 			</tbody>
 		</table>
+	{{/if}}
+</Template>
+
+<Template name="daysList">
+	{{#if loading}}
+	<h3>Загрузка дней недели</h3>
+	{{else}}
+	<ul class="nav nav-list">
+		{{#each days}}
+		<li class="categoryTitle {{active}}">{{title}}</li>
+		{{/each}}
+	</ul>
 	{{/if}}
 </Template>

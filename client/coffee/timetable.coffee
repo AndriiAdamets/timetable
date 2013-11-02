@@ -1,10 +1,12 @@
 DaysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
+
 Handlebars.registerHelper('arrayify', (obj)->
     result = []
     for key of obj
     	result.push({name:key,value:obj[key]})
     result
 	)
+
 Lecturers = new Meteor.Collection "lecturers"
 Timetable = new Meteor.Collection "timetable"
 Subjects = new Meteor.Collection "subjects"
@@ -16,14 +18,11 @@ SubjectsHandle = Meteor.subscribe "subjects"
 GroupsHandle = Meteor.subscribe "groups"
 
 
-
 Template.mainTable.loading = ->
 	TimetableHandle and not TimetableHandle.ready()
 
 Template.mainTable.groups = ->
-	Groups.find()
-Template.mainTable.items = ->
-	Timetable.find()
+	Groups.find({}, {sort:{Title:1}})
 
 Template.mainTable.loadingGroups = ->
 	GroupsHandle and not GroupsHandle.ready()
@@ -39,16 +38,18 @@ Template.mainTable.workDays = ->
 	table = {}
 	for i in dayNums
 		table[i] = {}
-		classNums = _.uniq(_(Timetable.find(dayNo: i).fetch()).pluck "classNo", false)
+		# classNums = _.uniq(_(Timetable.find(dayNo: i).fetch()).pluck "classNo", false)
+		classNums = _.uniq(_(Timetable.find().fetch()).pluck "classNo", false)
 		for j in classNums
 			table[i][j] = {}
-			grps = _.uniq(_(Timetable.find(dayNo: i).fetch()).pluck "group", false)	
+			# grps = _.uniq(_(Timetable.find(dayNo: i).fetch()).pluck "group", false)	
+			grps = _.uniq(_(Timetable.find().fetch()).pluck "group", false)	
 			for k in grps
-				table[i][j][k] = Timetable.findOne(dayNo: i, classNo:j, group: k).classes
-				# table[i][j][k] = Classes
+				if Timetable.findOne(dayNo: i, classNo:j, group: k) isnt undefined
+					table[i][j][k] = Timetable.findOne(dayNo: i, classNo:j, group: k).classes
+				else
+					table[i][j][k] = {}
 	table
-
-
 		
 
 Template.dayTimetable.dayTitle = ->
@@ -73,42 +74,14 @@ Template.dayTimetable.botLect = ->
 	Lecturers.findOne(_id : @.value.bot.lecturer).Soname
 
 
-
-# Template.dayTimetable.classesNums = ->
-# 	_.uniq(_(Timetable.find(dayNo:@.valueOf()).fetch()).pluck "classNo", false)
-
-
-# Template.dayTimetable.groups = ->
-# 	Groups.find()
-
-# Template.dayTimetable.classes = ->
-# 	Timetable.findOne(group:@._id)
-
-
-	# Class = Timetable.findOne(dayNo:Session.get "curDay", classNo: Session.get "curClassNo", group:@._id).classes
-	# if (Class.all is undefined)
-	# 	return 1
-	# return 0
-	# day = Session.get "curDay"
-	# num = Session.get "curClassNo"
-	# subj = Timetable.findOne(dayNo:day, classNo: num, group:@._id)
-	# if Subj.classes.all is undefined
-	# 	Session.set "classesType", "flasher"
-	# else
-	# 	Session.set "classesType", "stab"
-	# subj
 Template.dayTimetable.classesCount = ->
 	_.keys(@.value).length+1
 
-	#_.uniq(_(Timetable.find(dayNo:@.valueOf()).fetch()).pluck "classNo", false).length+1
-	
+Template.daysList.days = ->
+	dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
 
-#Template.dayTimetable.classesCount = ->
-	
+Template.daysList.loading = ->
+	TimetableHandle and not TimetableHandle.ready()
 
-
-# Template.mainTable.lecturerName = ->
-# 	Lecturers.findOne(_id = @lecturer).Soname
-
-# Template.mainTable.subjectTitle = ->
-# 	Subjects.findOne(_id = @subject).Title
+Template.daysList.title = ->
+	DaysOfWeek[@-1]
