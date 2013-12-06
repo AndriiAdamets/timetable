@@ -2,47 +2,52 @@
 	<title>Расписание занятий</title>
 </head>
 <body>
-	<div class="container">
-		<h1>Расписание занятий физико-технического факультета</h1>
-		<hr>
-		<div class="row">
-			<div class="span3">
-				{{> daysList}}
-			</div>
-			<div class="span9">{{> mainTable}}</div>
-		</div>
-	</div>
 </body>
+
+<Template name="mainTemplate">
+	<h1>Расписание занятий физико-технического факультета</h1>
+	<hr>
+	<div class="row">
+		<div class="span3">
+			{{> leftSideMenu}}
+		</div>
+		<div class="span9">{{> mainTable}}</div>
+	</div>
+	<footer>
+		<a href="admin">Войти</a>
+	</footer>
+</Template>
 
 <Template name="mainTable">
 	{{#if loading}}
 		<h3>Загрузка информации</h3>
 	{{else}}
-		<table id="timetable_all" class="table table-bordered">
+		<table class="table table-bordered">
 			<thead>
 				<td></td>
 				<td>№</td>
-				{{#each groups}}
-				<td>{{Title}}</td>
-				{{/each}}
+				{{#if displayedForGroups}}
+					{{#each Groups}}
+					<td>{{Title}}</td>
+					{{/each}}
+				{{else}}
+					{{#each Lecturers}}
+					<td>{{lectName}}</td>
+					{{/each}}
+				{{/if}}
 			</thead>
 			<tbody>
-			{{#each arrayify workDays}}
-				{{> dayTimetable}}
-			{{/each}}
+			{{#if displayedForGroups}}
+				{{#each arrayify studyDays}}
+					{{> dayTimetable}}
+				{{/each}}
+			{{else}}
+				{{#each arrayify workDays}}
+					{{> dayTimetable}}
+				{{/each}}
+			{{/if}}
 			</tbody>
 		</table>
 	{{/if}}
 </Template>
 
-<Template name="daysList">
-	{{#if loading}}
-	<h3>Загрузка дней недели</h3>
-	{{else}}
-	<ul class="nav nav-list">
-		{{#each days}}
-		<li class="categoryTitle {{active}}">{{title}}</li>
-		{{/each}}
-	</ul>
-	{{/if}}
-</Template>

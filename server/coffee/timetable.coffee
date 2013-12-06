@@ -1,4 +1,4 @@
-# Lecturer {Soname, Name, e-mail, phone}
+# Lecturer {Surname, Name, e-mail, phone}
 # Student {Name, group, email}
 # Subject {Title, Description}
 # Group {Title, type, department, year} type can be bachelor, specialist or master
@@ -23,53 +23,61 @@ Meteor.startup ->
 
 	if Lecturers.find().count() is 0
 		Lecturers.insert(
-			Soname:"Петренко",
-			Name:"Татьяна Григорьевна",
+			Surname:"Петренко",
+			Name:"Татьяна",
+			Patronymic: "Григорьевна",
 			email:"tgpetrenko55@gmail.com"
 			)
 		Lecturers.insert(
-			Soname: "Шарий",
-			Name: "Тимофей Вячеславович"
+			Surname: "Шарий",
+			Name: "Тимофей",
+			Patronymic: "Вячеславович"
 			)
 		Lecturers.insert(
-			Soname: "Тимчук",
-			Name: "Олег Сергеевич"
+			Surname: "Тимчук",
+			Name: "Олег",
+			Patronymic: "Сергеевич"
 			)
 		Lecturers.insert(
-			Soname: "Новакова",
-			Name: "Наталья Андреевна"
+			Surname: "Новакова",
+			Name: "Надежда",
+			Patronymic: "Андреевна"
+			)
+
+		Lecturers.insert(
+			Surname: "Толстых",
+			Name: "Виктор",
+			Patronymic: "Константинович"
 			)
 		Lecturers.insert(
-			Soname: "Шарий",
-			Name: "Тимофей Вячеславович"
+			Surname: "Ломонос",
+			Name: "Ярослав",
+			Patronymic: "Геннадиевич"
 			)
 		Lecturers.insert(
-			Soname: "Толстых",
-			Name: "Виктор Константинович"
+			Surname: "Сапунов",
+			Name: "Сергей",
+			Patronymic: "Валериевич"
 			)
 		Lecturers.insert(
-			Soname: "Ломонос",
-			Name: "Ярослав Геннадиевич"
+			Surname: "Сальков",
+			Name: "Игорь",
+			Patronymic: "Григорьевич"
 			)
 		Lecturers.insert(
-			Soname: "Сапунов",
-			Name: "С В"
+			Surname: "Епик",
+			Name: "Марина",
+			Patronymic: "Александровна"
 			)
 		Lecturers.insert(
-			Soname: "Сальков",
-			Name: "Игорь Григорьевич"
+			Surname: "Быковская",
+			Name: "Наталья",
+			Patronymic: "Владиславовна"
 			)
 		Lecturers.insert(
-			Soname: "Епик",
-			Name: "Марина Александровна"
-			)
-		Lecturers.insert(
-			Soname: "Быковская",
-			Name: "Наталья Владиславовна"
-			)
-		Lecturers.insert(
-			Soname: "Кожемякин",
-			Name: "Юрий Алексеевич"
+			Surname: "Кожемякин",
+			Name: "Юрий"
+			Patronymic: "Алексеевич"
 			)
 		console.log "Lecturers was added to DB"
 	else
@@ -80,7 +88,7 @@ Meteor.startup ->
 			Title: "Безопасность и защита данных"
 			)
 		Subjects.insert(
-			Title: "Вычислительный Интелект"
+			Title: "Вычислительный Интеллект"
 			)
 		Subjects.insert(
 			Title: "Распределённые Вычисления"
@@ -107,7 +115,7 @@ Meteor.startup ->
 			Title: "Охрана Труда"
 			)
 		Subjects.insert(
-			Title: "Технологии Искуственного Интелекта"
+			Title: "Технологии Искуственного Интеллекта"
 			)
 		Subjects.insert(
 			Title: "Оборудование компьютерных сетей"
@@ -149,7 +157,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
-					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав")._id,
 					classRoom: 408		
 				}
 			},
@@ -162,7 +170,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
-					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав")._id,
 					classRoom: 408		
 				}
 			},
@@ -175,7 +183,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
-					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав")._id,
 					classRoom: 408		
 				}
 			},
@@ -187,7 +195,7 @@ Meteor.startup ->
 			classes: {
 				top: {
 					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
-					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав")._id,
 					classRoom: 402
 				}
 			},
@@ -199,7 +207,7 @@ Meteor.startup ->
 			classes: {
 				bot: {
 					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
-					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав")._id,
 					classRoom: 402
 				}
 			},
@@ -212,7 +220,7 @@ Meteor.startup ->
 			classes: {
 				bot: {
 					subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
-					lecturer: Lecturers.findOne(Name: "Ярослав Геннадиевич")._id,
+					lecturer: Lecturers.findOne(Name: "Ярослав")._id,
 					classRoom: 402
 				}
 			},
@@ -225,7 +233,7 @@ Meteor.startup ->
 			classes: {
 				bot: {
 					subject: Subjects.findOne(Title:"Безопасность и защита данных")._id,
-					lecturer: Lecturers.findOne(Name: "Олег Сергеевич")._id,
+					lecturer: Lecturers.findOne(Name: "Олег")._id,
 					classRoom: 416
 				}
 			},
@@ -238,7 +246,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 					subject: Subjects.findOne(Title:"WEB-дизайн")._id,
-					lecturer: Lecturers.findOne(Name: "Наталья Андреевна")._id,
+					lecturer: Lecturers.findOne(Name: "Надежда")._id,
 					classRoom: 402
 				}
 			},
@@ -251,7 +259,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 					subject: Subjects.findOne(Title:"WEB-дизайн")._id,
-					lecturer: Lecturers.findOne(Name: "Наталья Андреевна")._id,
+					lecturer: Lecturers.findOne(Name: "Надежда")._id,
 					classRoom: 402
 				}
 			},
@@ -264,7 +272,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор")._id,
 					classRoom: 416
 				}
 			}
@@ -277,7 +285,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор")._id,
 					classRoom: 416
 				}
 			}
@@ -290,7 +298,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id,
+					lecturer: Lecturers.findOne(Name: "Виктор")._id,
 					classRoom: 416
 				}
 			}
@@ -303,12 +311,12 @@ Meteor.startup ->
 			classes: {
 				top: {
 					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+					lecturer: Lecturers.findOne(Name: "Виктор")._id
 					classRoom: 413
 				}
 				bot: {
 					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+					lecturer: Lecturers.findOne(Name: "Виктор")._id
 					classRoom: 408
 				}
 			}
@@ -321,12 +329,12 @@ Meteor.startup ->
 			classes: {
 				top: {
 					subject: Subjects.findOne(Title:"WEB-дизайн")._id
-					lecturer: Lecturers.findOne(Name: "Наталья Андреевна")._id
+					lecturer: Lecturers.findOne(Name: "Надежда")._id
 					classRoom: 409
 				}
 				bot: {
 					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+					lecturer: Lecturers.findOne(Name: "Виктор")._id
 					classRoom: 408
 				}
 			}
@@ -339,7 +347,7 @@ Meteor.startup ->
 			classes: {
 				bot: {
 					subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-					lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+					lecturer: Lecturers.findOne(Name: "Виктор")._id
 					classRoom: 408
 				}
 			}
@@ -351,8 +359,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ1")._id
 			classes: {
 				bot: {
-						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
-						lecturer: Lecturers.findOne(Name: "С В")._id
+						subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
+						lecturer: Lecturers.findOne(Name: "Сергей")._id
 						classRoom: 408
 				}
 			}
@@ -364,8 +372,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ2")._id
 			classes: {
 				bot: {
-						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
-						lecturer: Lecturers.findOne(Name: "С В")._id
+						subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
+						lecturer: Lecturers.findOne(Name: "Сергей")._id
 						classRoom: 408
 				}
 			}
@@ -377,8 +385,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ3")._id
 			classes: {
 				bot: {
-						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
-						lecturer: Lecturers.findOne(Name: "С В")._id
+						subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
+						lecturer: Lecturers.findOne(Name: "Сергей")._id
 						classRoom: 408
 				}
 			}
@@ -391,7 +399,7 @@ Meteor.startup ->
 			classes: {
 				top: {
 						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
-						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей")._id,
 						classRoom: 402
 				}
 			}
@@ -404,7 +412,7 @@ Meteor.startup ->
 			classes: {
 				bot: {
 						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
-						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей")._id,
 						classRoom: 402
 				}
 			}
@@ -417,7 +425,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
-						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей")._id,
 						classRoom: 416
 				}
 			}
@@ -430,7 +438,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
-						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей")._id,
 						classRoom: 416
 				}
 			}
@@ -443,7 +451,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
-						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
+						lecturer: Lecturers.findOne(Name: "Тимофей")._id,
 						classRoom: 416
 				}
 			}
@@ -456,7 +464,7 @@ Meteor.startup ->
 			classes: {
 				bot: {
 						subject: Subjects.findOne(Title:"Безопасность и защита данных")._id
-						lecturer: Lecturers.findOne(Name: "Олег Сергеевич")._id
+						lecturer: Lecturers.findOne(Name: "Олег")._id
 						classRoom: 415
 				}
 			}
@@ -468,8 +476,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ2")._id
 			classes: {
 				all: {
-						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
-						lecturer: Lecturers.findOne(Name: "С В")._id
+						subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
+						lecturer: Lecturers.findOne(Name: "Сергей")._id
 						classRoom: 408
 				}
 			}
@@ -481,8 +489,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ1")._id
 			classes: {
 				all: {
-						subject: Subjects.findOne(Title:"Вычислительный Интелект")._id
-						lecturer: Lecturers.findOne(Name: "С В")._id
+						subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
+						lecturer: Lecturers.findOne(Name: "Сергей")._id
 						classRoom: 408
 				}
 			}
@@ -495,7 +503,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
-						lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id
+						lecturer: Lecturers.findOne(Name: "Виктор")._id
 						classRoom: 408
 				}
 			}
@@ -508,7 +516,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
-						lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id
+						lecturer: Lecturers.findOne(Name: "Тимофей")._id
 						classRoom: 408
 				}
 			}
@@ -521,7 +529,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Рендеринг")._id,
-						lecturer: Lecturers.findOne(Name: "Игорь Григорьевич")._id,
+						lecturer: Lecturers.findOne(Name: "Игорь")._id,
 						classRoom: 416
 				}
 			}
@@ -534,7 +542,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Рендеринг")._id,
-						lecturer: Lecturers.findOne(Name: "Игорь Григорьевич")._id,
+						lecturer: Lecturers.findOne(Name: "Игорь")._id,
 						classRoom: 416
 				}
 			}
@@ -547,7 +555,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Рендеринг")._id,
-						lecturer: Lecturers.findOne(Name: "Игорь Григорьевич")._id,
+						lecturer: Lecturers.findOne(Name: "Игорь")._id,
 						classRoom: 416
 				}
 			}
@@ -560,7 +568,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Рендеринг")._id,
-						lecturer: Lecturers.findOne(Name: "Игорь Григорьевич")._id,
+						lecturer: Lecturers.findOne(Name: "Игорь")._id,
 						classRoom: 416
 				}
 			}
@@ -573,7 +581,7 @@ Meteor.startup ->
 			classes: {
 				all: {
 						subject: Subjects.findOne(Title:"Оборудование компьютерных сетей")._id,
-						lecturer: Lecturers.findOne(Name: "Юрий Алексеевич")._id,
+						lecturer: Lecturers.findOne(Name: "Юрий")._id,
 						classRoom: 312
 				}
 			}
@@ -585,8 +593,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ1")._id
 			classes: {
 				all: {
-						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
-						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина")._id,
 						classRoom: 408
 				}
 			}
@@ -598,8 +606,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ2")._id
 			classes: {
 				all: {
-						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
-						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина")._id,
 						classRoom: 408
 				}
 			}
@@ -611,8 +619,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ3")._id
 			classes: {
 				all: {
-						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
-						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина")._id,
 						classRoom: 408
 				}
 			}
@@ -624,8 +632,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ1")._id
 			classes: {
 				top: {
-						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
-						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина")._id,
 						classRoom: 415
 				}
 			}
@@ -637,8 +645,8 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ2")._id
 			classes: {
 				bot: {
-						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
-						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина")._id,
 						classRoom: 415
 				}
 			}
@@ -650,66 +658,18 @@ Meteor.startup ->
 			group: Groups.findOne(Title:"СИИ3")._id
 			classes: {
 				bot: {
-						subject: Subjects.findOne(Title:"Технологии Искуственного Интелекта")._id,
-						lecturer: Lecturers.findOne(Name: "Марина Александровна")._id,
+						subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id,
+						lecturer: Lecturers.findOne(Name: "Марина")._id,
 						classRoom: 409
 				}
 			}
 			dayNo: 5
 			classNo: 6
 		)
-
-		# Timetable.insert(
-		# 	group: Groups.findOne(Title:"СИИ2")._id, 
-		# 	subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id,
-		# 	lecturer: Lecturers.findOne(Name: "Тимофей Вячеславович")._id,
-		# 	dayNo: 3,
-		# 	weekNum: 0,
-		# 	classNo: 4,
-		# 	classRoom: 416
-		# )
-		# Timetable.insert(
-		# 	group: Groups.findOne(Title:"СИИ2")._id, 
-		# 	subject: Subjects.findOne(Title:"Вычислительный Интелект")._id,
-		# 	lecturer: Lecturers.findOne(Name: "С В")._id,
-		# 	dayNo: 3,
-		# 	weekNum: 0,
-		# 	classNo: 4,
-		# 	classRoom: 408
-		# )
-		# Timetable.insert(
-		# 	group: Groups.findOne(Title:"СИИ2")._id, 
-		# 	subject: Subjects.findOne(Title:"Вычислительный Интелект")._id,
-		# 	lecturer: Lecturers.findOne(Name: "С В")._id,
-		# 	dayNo: 3,
-		# 	weekNum: 0,
-		# 	classNo: 5,
-		# 	classRoom: 408
-		# )
-		# Timetable.insert(
-		# 	group: Groups.findOne(Title:"СИИ2")._id, 
-		# 	subject: Subjects.findOne(Title:"Современные Internet-технологии")._id,
-		# 	lecturer: Lecturers.findOne(Name: "Виктор Константинович")._id,
-		# 	# classes: {
-		# 	# 	top: {}
-		# 	# 	but: {}
-		# 	# 	all: {}
-		# 	# }
-		# 	dayNo: 3,
-		# 	weekNum: 0,
-		# 	classNo: 6,
-		# 	classRoom: 413
-		# )
 		console.log "Classes added to DB"
 	else
 		console.log Timetable.find().count()+ " classes in timetable"
-	#console.log Groups.findOne(Title:"СИИ2")._id
-
-		# Titmetable {GroupID, SubjectID, LecturerID, dayNo, weekNum, classNo, classRoom}
-		# Group {Title, type, department, year} type can be bachelor, specialist or master
-
-	#if Subjects.find().count() is 0
-		#Subjects.insert
+	
 Meteor.publish "groups", () ->
 	Groups.find()
 Meteor.publish "lecturers", () ->

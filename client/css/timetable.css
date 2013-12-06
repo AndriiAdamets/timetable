@@ -1,0 +1,10 @@
+.side-nav {
+position: fixed;
+overflow-y: scroll;
+width: 250px;
+height: 66%;
+}
+
+.nav-list li a:hover{
+	cursor: pointer;
+}

@@ -2,52 +2,89 @@
 	<tr>
 		<td id="{{this.name}}" rowspan="{{classesCount}}">{{dayTitle}}</td>
 	</tr>
-		{{#each arrayify value}}
-		<tr>
-			<td>{{name}}</td>
+		{{#if displayedForGroups}}
 			{{#each arrayify value}}
-				{{#if value.all}}
-					<td>
-						{{allSubj}}
-						<br>
-						{{allLect}}
-						<br>
-						{{value.all.classRoom}}
-					</td>
-				{{else}}
-					<td>
-						{{#if value.top}}
-							{{topSubj}}
-							<br>
-							{{topLect}}
-							<br>
-							{{value.top.classRoom}}
+				<tr>
+					<td>{{name}}</td>
+					{{#each arrayify value}}
+						{{#if value.all}}
+							<td>
+								{{allSubj}}
+								<br>
+								{{allLect}}
+								<br>
+								{{value.all.classRoom}}
+							</td>
 						{{else}}
-							-
+							<td>
+								{{#if value.top}}
+									{{topSubj}}
+									<br>
+									{{topLect}}
+									<br>
+									{{value.top.classRoom}}
+								{{else}}
+									-
+								{{/if}}
+								<hr>
+								{{#if value.bot}}
+									{{botSubj}}
+									<br>
+									{{botLect}}
+									<br>
+									{{value.bot.classRoom}}
+								{{else}}
+									-
+								{{/if}}
+							</td>
 						{{/if}}
-						<hr>
-						{{#if value.bot}}
-							{{botSubj}}
-							<br>
-							{{botLect}}
-							<br>
-							{{value.bot.classRoom}}
-						{{else}}
-							-
-						{{/if}}
-					</td>
-				{{/if}}
+					{{/each}}
+				</tr>
 			{{/each}}
-		</tr>
-		{{/each}}
-</template>
-
-<template name="singleClass">
-	<td></td>
-</template>
-
-<template name="doubleClass">
-	<td>
-		<hr>
-	</td>
+		{{else}}
+			{{#each arrayify value}}
+				<tr>
+					<td>{{name}}</td>
+					{{#each arrayify value}}
+						{{#if value.all}}
+							<td>
+								{{allSubj}}
+								<br>
+								{{#each value.all.groups}}
+									{{groupTitle}}
+									<br>
+								{{/each}}
+								{{value.all.classRoom}}
+							</td>
+						{{else}}
+							<td>
+								{{#if value.top}}
+									{{topSubj}}
+									<br>
+									{{#each value.top.groups}}
+									{{groupTitle}}
+									<br>
+								{{/each}}
+									{{value.top.classRoom}}
+								{{else}}
+									-
+								{{/if}}
+								<hr>
+								{{#if value.bot}}
+									{{botSubj}}
+									<br>
+									{{#each value.bot.groups}}
+									{{groupTitle}}
+									<br>
+								{{/each}}
+									{{value.bot.classRoom}}
+								{{else}}
+									-
+								{{/if}}
+							</td>
+						{{/if}}
+					{{/each}}
+				</tr>
+			{{/each}}
+		{{/if}}
 </template>

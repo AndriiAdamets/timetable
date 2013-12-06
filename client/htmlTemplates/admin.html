@@ -1,0 +1,81 @@
+<Template name="adminPage">
+	{{#if currentUser}}
+    <div class="row">
+      <div class="span3">
+        {{> leftSideAdminMenu}}
+      </div>
+      <div class="span9">
+        {{> subjectsTable}}
+      </div>
+    </div>
+	{{else}}
+		{{> loginForm}}
+	{{/if}}
+</Template>
+
+<Template name="loginForm">
+	<div class="container">
+      <form class="form-signin" action="action">
+        <h2 class="form-signin-heading">Введите логин и пароль</h2>
+        <input id="login" type="text" class="input-block-level" placeholder="Логин" autocomplete="off" keyev="true" clickev="true">
+        <input id="password"type="password" class="input-block-level" placeholder="Пароль" autocomplete="off" keyev="true" clickev="true">
+        <div id="signinError" class="alert alert-error" style="display: none;">Неверный логин или пароль</div>
+        <button class="btn btn-large btn-primary" type="submit">Войти</button>
+      </form>
+    </div>
+</Template>
+
+<Template name="leftSideAdminMenu">
+  <div class="side-nav well">
+    <ul class="nav nav-list">
+      <li class="{{active}}"><a href="groups">Группы</a></li>
+      <li><a class="{{active}}" href="lecturers">Преподаватели</a></li>
+      <li><a class="{{active}}" href="timetable">Расписание</a></li>
+      <li id="logout"><a>Выйти</a></li>
+    </ul>
+  </div>
+</Template>
+
+<Template name="groupsTable">
+  <table id="tableGroups" class="table table-bordered">
+    <thead>
+      <th>Название</th><th>Тип</th><th>Год</th>
+    </thead>
+    <tbody>
+      {{#each groups}}
+      <tr><td>{{Title}}</td><td>{{Type}}</td><td>{{Year}}</td><td><button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button></td></tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td><input></td>
+      </tr>
+    </tfoot>
+  </table>
+</Template>
+
+<Template name="lecturersTable">
+  <table id="tableLecturers" class="table table-bordered">
+    <thead>
+      <th>Фамилия</th><th>Имя</th><th>Отчество</th>
+    </thead>
+    <tbody>
+      {{#each lecturers}}
+      <tr><td>{{Surname}}</td><td>{{Name}}</td><td>{{Patronymic}}</td><td><button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button></td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+</Template>
+
+<Template name="subjectsTable">
+  <table id="tableLecturers" class="table table-bordered">
+    <thead>
+      <th>Название</th><th>Описание</th>
+    </thead>
+    <tbody>
+      {{#each subjects}}
+      <tr><td>{{Title}}</td><td>{{Discription}}</td><td><button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button></td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+</Template>
