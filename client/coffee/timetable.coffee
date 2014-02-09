@@ -4,6 +4,7 @@ window.Lecturers = new Meteor.Collection "lecturers"
 window.Timetable = new Meteor.Collection "timetable"
 window.Subjects = new Meteor.Collection "subjects"
 window.Groups = new Meteor.Collection "groups"
+window.Classrooms = new Meteor.Collection "classrooms"
 
 window.TimetableHandle = Meteor.subscribe "timetable"
 window.LecturersHandle = Meteor.subscribe "lecturers"
