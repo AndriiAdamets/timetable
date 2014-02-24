@@ -6,5 +6,11 @@ height: 66%;
 }
 
 .nav-list li a:hover{
-	cursor: pointer;
+  cursor: pointer;
+}
+
+@media (max-width: 979px) {
+  .timetable-space {
+    width: 100%;
+  }
 }

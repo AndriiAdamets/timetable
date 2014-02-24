@@ -1,53 +1,55 @@
 <head>
-	<title>Расписание занятий</title>
+  <title>Расписание занятий</title>
 </head>
 <body>
+  {{> mainTemplate}}
 </body>
 
 <Template name="mainTemplate">
-	<h1>Расписание занятий физико-технического факультета</h1>
-	<hr>
-	<div class="row">
-		<div class="span3">
-			{{> leftSideMenu}}
-		</div>
-		<div class="span9">{{> mainTable}}</div>
-	</div>
-	<footer>
-		<a href="admin">Войти</a>
-	</footer>
+  {{> mainNavbar}}
+  <h1>Расписание занятий физико-технического факультета</h1>
+  <hr>
+  <div class="row-fluid">
+    <div class="span3 visible-desktop">
+      {{> leftSideMenu}}
+    </div>
+    <div class="span9 timetable-space">{{> mainTable}}</div>
+  </div>
+  <footer>
+    <a href="admin">Войти</a>
+  </footer>
 </Template>
 
 <Template name="mainTable">
-	{{#if loading}}
-		<h3>Загрузка информации</h3>
-	{{else}}
-		<table class="table table-bordered">
-			<thead>
-				<td></td>
-				<td>№</td>
-				{{#if displayedForGroups}}
-					{{#each Groups}}
-					<td>{{Title}}</td>
-					{{/each}}
-				{{else}}
-					{{#each Lecturers}}
-					<td>{{lectName}}</td>
-					{{/each}}
-				{{/if}}
-			</thead>
-			<tbody>
-			{{#if displayedForGroups}}
-				{{#each arrayify studyDays}}
-					{{> dayTimetable}}
-				{{/each}}
-			{{else}}
-				{{#each arrayify workDays}}
-					{{> dayTimetable}}
-				{{/each}}
-			{{/if}}
-			</tbody>
-		</table>
-	{{/if}}
+  {{#if loading}}
+    <h3>Загрузка информации</h3>
+  {{else}}
+    <table class="table table-bordered">
+      <thead>
+        <td></td>
+        <td>№</td>
+        {{#if displayedForGroups}}
+          {{#each Groups}}
+          <td>{{Title}}</td>
+          {{/each}}
+        {{else}}
+          {{#each Lecturers}}
+          <td>{{lectName}}</td>
+          {{/each}}
+        {{/if}}
+      </thead>
+      <tbody>
+      {{#if displayedForGroups}}
+        {{#each arrayify studyDays}}
+          {{> dayTimetable}}
+        {{/each}}
+      {{else}}
+        {{#each arrayify workDays}}
+          {{> dayTimetable}}
+        {{/each}}
+      {{/if}}
+      </tbody>
+    </table>
+  {{/if}}
 </Template>
 
