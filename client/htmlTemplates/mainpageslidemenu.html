@@ -1,35 +1,35 @@
 
 <Template name="leftSideMenu">
-	<div class="side-nav well">
-		<ul class="nav nav-list">
-			<li><input id="cb_showEmptyClasses" type="checkbox" checked>Отображать пустые пары</li>
-			<li class="nav-header">День недели</li>
-			{{#if loadingDays}}
-			<h3>Загрузка дней недели</h3>
-			{{else}}
-			{{#each days}}
-			<li class="dayOfWeek {{activeDay}}"><a>{{title}}</a><!-- <a href="#{{this}}">{{title}}</a> --></li>
-			{{/each}}
-			{{/if}}
-			<li class="nav-header">Отображать расписание для группы</li>
-			{{#if loadingGroups}}
-			<h3>Загрузка списка групп</h3>
-			{{else}}
-			<li class="displayedGroup {{activeGroup}}"><!-- <a href="#allGroups">Все</a> --><a>Все</a></li>
-			{{#each groups}}
-			<li class="displayedGroup {{activeGroup}}"><!-- <a href="#{{_id}}">{{Title}}</a> --><a>{{Title}}</a></li>
-			{{/each}}
-			{{/if}}
-			<li class="nav-header">Отображать расписание для преподавателя</li>
-			{{#if loadingLecturers}}
-			<h3>Загрузка преподавателей</h3>
-			{{else}}
-			<li class="displayedLecturer {{activeLecturer}}"><!-- <a href="#lecturer:all"> --><a>Все</a></li>
-			{{#each lecturers}}
-			<li class="displayedLecturer {{activeLecturer}}"><!-- <a href="#lecturer:{{_id}}"> --><a>{{Surname}} {{Name}} {{Patronymic}}</a></li>
-			{{/each}}
-			{{/if}}
-		</ul>
-	</div>
-	
+  <div class="side-nav well">
+    <ul class="nav nav-list">
+      <li><input id="cb_showEmptyClasses" type="checkbox" checked>Отображать пустые пары</li>
+      <li class="nav-header">День недели</li>
+      {{#if loadingDays}}
+      <h3>Загрузка дней недели</h3>
+      {{else}}
+      {{#each days}}
+      <li class="dayOfWeek {{activeDay}}"><a>{{title}}</a></li>
+      {{/each}}
+      {{/if}}
+      <li class="nav-header">Отображать расписание для группы</li>
+      {{#if loadingGroups}}
+      <h3>Загрузка списка групп</h3>
+      {{else}}
+      <li class="displayedGroup {{activeGroup}}"><a>Все</a></li>
+      {{#each groups}}
+      <li class="displayedGroup {{activeGroup}}"><a>{{Title}}</a></li>
+      {{/each}}
+      {{/if}}
+      <li class="nav-header">Отображать расписание для преподавателя</li>
+      {{#if loadingLecturers}}
+      <h3>Загрузка преподавателей</h3>
+      {{else}}
+      <li class="displayedLecturer {{activeLecturer}}"><a>Все</a></li>
+      {{#each lecturers}}
+      <li class="displayedLecturer {{activeLecturer}}"><a>{{Surname}} {{Name}} {{Patronymic}}</a></li>
+      {{/each}}
+      {{/if}}
+    </ul>
+  </div>
+
 </Template>

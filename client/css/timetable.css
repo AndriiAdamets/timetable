@@ -1,13 +1,15 @@
 .side-nav {
 position: fixed;
 overflow-y: scroll;
-width: 250px;
+width: 100px;
 height: 66%;
 }
 
-.nav-list li a:hover{
+.nav li a:hover{
   cursor: pointer;
 }
+
+
 
 @media (max-width: 979px) {
   .timetable-space {

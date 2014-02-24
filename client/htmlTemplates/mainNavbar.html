@@ -1,23 +1,69 @@
 <Template name="mainNavbar">
-  <div class="navbar">
+  <div class="navbar nav-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-
-        <!-- Be sure to leave the brand out there if you want it shown -->
-        <a class="brand" href="#">Project name</a>
-
-        <!-- Everything you want hidden at 940px or less, place within here -->
+        <a class="brand" href="http://phys.donnu.edu.ua">Физ-тех. фак.</a>
         <div class="nav-collapse collapse">
-          <!-- .nav, .navbar-search, .navbar-form, etc -->
+          <ul class="nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"
+                data-toggle="dropdown">Дни недели
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingDays}}
+                  <h3>Загрузка дней недели</h3>
+                {{else}}
+                  {{#each days}}
+                    <li class="dayNavItem {{activeDay}}"><a>{{Title}}</a></li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"
+                data-toggle="dropdown">Группы
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingGroups}}
+                  <h3>Загрузка списка групп</h3>
+                {{else}}
+                  <li class="groupNavItem {{activeGroup}}">
+                    <a>Все</a>
+                  </li>
+                  {{#each groups}}
+                  <li class="groupNavItem {{activeGroup}}">
+                    <a>{{_id}}</a>
+                  </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"
+                data-toggle="dropdown">Преподаватели
+                <b class="caret"></b>
+              </a>
+                <ul class="dropdown-menu">
+                  {{#if loadingLecturers}}
+                    <h3>Загрузка преподавателей</h3>
+                  {{else}}
+                    {{#each lecturers}}
+                      <li class="lecturerNavItem {{activeLecturer}}"><a>{{Surname}} {{Name}} {{Patronymic}}</a></li>
+                    {{/each}}
+                  {{/if}}
+                </ul>
+            </li>
+            <li><a href="#">Аудитории</a></li>
+            </li>
+          </ul>
         </div>
-
       </div>
     </div>
   </div>
