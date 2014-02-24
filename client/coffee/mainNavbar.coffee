@@ -19,10 +19,17 @@ Template.mainNavbar.groups = ->
 Template.mainNavbar.lecturers = ->
   Lecturers.find()
 
+Template.mainNavbar.classrooms = ->
+  Classrooms.find()
+
 Template.mainNavbar.activeDay = () ->
   (if Session.equals("selectedDayInSlideMenu", @.valueOf()) then "active" else "")
 
 Template.mainNavbar.events
+  'click .dropdown-menu input': ->
+    false
+  'change .dropdown-menu input': ->
+    alert $(@).parent()
   'click li.dayNavItem': ->
     Session.set "selectedDayInSlideMenu", @.valueOf()
     $('html, body').animate

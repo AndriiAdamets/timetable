@@ -2,6 +2,7 @@
 # Student {Name, group, email}
 # Subject {Title, Description}
 # Group {Title, type, department, year} type can be bachelor, specialist or master
+# Classroom {num, roomines}
 # Titmetable {GroupID, SubjectID, LecturerID, dayNo, weekNum, classNo, classRoom}
 Lecturers = new Meteor.Collection "lecturers"
 Students = new Meteor.Collection "students"
@@ -13,7 +14,7 @@ Timetable = new Meteor.Collection "timetable"
 Meteor.startup ->
     #console.log "Server started"
     if Meteor.users.find().count() is 0
-        adm = 
+        adm =
             username: "admin"
             password: "admin"
             profile:
@@ -196,7 +197,7 @@ Meteor.startup ->
                 all: {
                     subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
                     lecturer: Lecturers.findOne(Name: "Ярослав")._id,
-                    classRoom: 408      
+                    classRoom: 408
                 }
             },
             dayNo: 1,
@@ -209,7 +210,7 @@ Meteor.startup ->
                 all: {
                     subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
                     lecturer: Lecturers.findOne(Name: "Ярослав")._id,
-                    classRoom: 408      
+                    classRoom: 408
                 }
             },
             dayNo: 1,
@@ -222,7 +223,7 @@ Meteor.startup ->
                 all: {
                     subject: Subjects.findOne(Title:"Распределённые Вычисления")._id,
                     lecturer: Lecturers.findOne(Name: "Ярослав")._id,
-                    classRoom: 408      
+                    classRoom: 408
                 }
             },
             dayNo: 1,
@@ -574,7 +575,7 @@ Meteor.startup ->
             dayNo: 4
             classNo: 2
         )
-        
+
         Timetable.insert(
             group: Groups.findOne(Title:"СИИ3")._id
             classes: {
@@ -707,7 +708,7 @@ Meteor.startup ->
         console.log "Classes added to DB"
     else
         console.log Timetable.find().count()+ " classes in timetable"
-    
+
 Meteor.publish "groups", () ->
     Groups.find()
 Meteor.publish "lecturers", () ->
