@@ -44,7 +44,6 @@ Template.mainNavbar.events
           $(i).show()
         else
           $(i).hide()
-    # alert $(@).parent()
   'click li.dayNavItem': ->
     Session.set "selectedDayInSlideMenu", @.valueOf()
     $('html, body').animate
