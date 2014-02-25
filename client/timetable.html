@@ -7,13 +7,12 @@
 
 <Template name="mainTemplate">
   {{> mainNavbar}}
-  <h1>Расписание занятий физико-технического факультета</h1>
+  <h1 class="main-header">Расписание занятий физико-технического факультета</h1>
   <hr>
-  <div class="row-fluid">
-    <div class="span3 visible-desktop">
-      {{> leftSideMenu}}
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12 timetable-space">{{> mainTable}}</div>
     </div>
-    <div class="span9 timetable-space">{{> mainTable}}</div>
   </div>
   <footer>
     <a href="admin">Войти</a>
