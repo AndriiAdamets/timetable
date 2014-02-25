@@ -73,6 +73,7 @@ Template.mainTable.studyDays = ->
       if displayedGroupId is undefined
         grps = _.uniq(_(Timetable.find().fetch()).pluck "group", false)
       else
+        # grps = _.uniq(_(Timetable.find('$or': [{group: displayedGroupId}, {group: GroupId2}]).fetch()).pluck "group", false)
         grps = _.uniq(_(Timetable.find({group: displayedGroupId}).fetch()).pluck "group", false)
       for k in grps
         if Timetable.findOne(dayNo: i, classNo:j, group: k) isnt undefined

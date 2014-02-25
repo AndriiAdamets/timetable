@@ -38,7 +38,6 @@ Template.mainNavbar.events
     else
       for i in items
         cur_text = ' '+$(i).find('a').text().toLowerCase().trim()
-        console.log cur_text
         if cur_text.indexOf(search_val) >= 0
           $(i).show()
         else
