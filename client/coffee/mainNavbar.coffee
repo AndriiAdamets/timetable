@@ -30,14 +30,15 @@ Template.mainNavbar.events
     false
   'keyup .dropdown-menu input':(e) ->
     search_val = ' '+$(e.target).val()
+    search_val = search_val.toLowerCase()
     items = $(e.target).parent().parent().find('li')
     if search_val is " "
       for i in items
         $(i).show()
-
     else
       for i in items
-        cur_text = ' '+$(i).find('a').text().trim()#replace(/\s/g, "")
+        cur_text = ' '+$(i).find('a').text().trim()
+        cur_text = cur_text.toLowerCase()
         console.log cur_text
         if cur_text.indexOf(search_val) >= 0
           $(i).show()
