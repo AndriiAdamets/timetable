@@ -28,12 +28,39 @@ Template.mainNavbar.classrooms = ->
 Template.mainNavbar.activeDay = ->
   if Session.equals("selectedDayInSlideMenu", @.valueOf()) then "active" else ""
 
-# Template.mainNavbar.activeGroup = ->
-#   active_groups = Session.get "activeGroups"
-#   return if activeGroup is undefined
-#   cur_id = @_id
-#   if $(activeGroups).indexOf(cur_text) > 0 then "checked" else ""
-  # if (Session.get("activeGroups").pos(@.valueOf()).trim()) > 0 then "checked" else ""
+
+Template.mainNavbar.active_all_groups = ->
+  active_groups = Session.get "active_groups"
+  if active_groups is undefined or active_groups.length is 0
+    "checked"
+  else
+    ""
+
+Template.mainNavbar.active_all_lecturers = ->
+  active_lecturers = Session.get "active_lecturers"
+  if active_lecturers is undefined or active_lecturers.length is 0
+    "checked"
+  else
+    ""
+
+Template.mainNavbar.active_all_classrooms = ->
+  active_classrooms = Session.get "active_classrooms"
+  if active_classrooms is undefined or active_classrooms.length is 0
+    "checked"
+  else
+    ""
+
+Template.mainNavbar.active_group = ->
+  active_groups = Session.get "active_groups"
+  if active_groups isnt undefined and active_groups.indexOf(@_id) > -1 then "checked" else ""
+
+Template.mainNavbar.active_lecturer = ->
+  active_lecturers = Session.get "active_lecturers"
+  if active_lecturers isnt undefined and active_lecturers.indexOf(@_id) > -1 then "checked" else ""
+
+Template.mainNavbar.active_classroom = ->
+  active_classrooms = Session.get "active_classrooms"
+  if active_classrooms isnt undefined and active_classrooms.indexOf(@_id) > -1 then "checked" else ""
 
 
 Template.mainNavbar.events
@@ -66,6 +93,12 @@ Template.mainNavbar.events
   'click li.classroomNavItem': ->
     checkSessionArray "active_classrooms", @_id
 
+  'click li.displayNavItem': (e)->
+    items = $('.displayNavItem')
+    for i in items
+      $(i).removeClass "active"
+      $($(e.target).parent()).addClass "active"
+    Session.set "displayed_for", $($(e.target).parent()).attr('value')
 
   'click #cb_showEmptyClasses': ->
     Session.set "showEmptyClasses", $('#cb_showEmptyClasses').is(":checked")
