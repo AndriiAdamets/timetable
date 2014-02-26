@@ -7,7 +7,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="http://phys.donnu.edu.ua">Физ-тех. фак.</a>
+        <a class="brand" href="http://http://csu.com.ua/studio/kkt/">Кафедра КТ</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li class="dropdown">
@@ -44,14 +44,14 @@
                       <input type="text" class="search-query form-control" placeholder="Группа">
                       <i class="icon-search"></i>
                   </div>
-                  <li class="groupNavItem {{activeGroup}}">
+                  <li class="groupNavItem {{active_all_groups}}">
                     <a>
                       Все
                       <i class="icon-ok"></i>
                     </a>
                   </li>
                   {{#each groups}}
-                  <li class="groupNavItem {{activeGroup}}">
+                  <li class="groupNavItem {{active_group}}">
                     <a>
                       {{_id}}
                       <i class="icon-ok"></i>
@@ -66,32 +66,60 @@
                 data-toggle="dropdown">Преподаватели
                 <b class="caret"></b>
               </a>
-                <ul class="dropdown-menu">
-                  {{#if loadingLecturers}}
-                    <h3>Загрузка преподавателей</h3>
-                  {{else}}
+              <ul class="dropdown-menu">
+                {{#if loadingLecturers}}
+                  <h3>Загрузка преподавателей</h3>
+                {{else}}
+                <div class="search-container">
+                    <input type="text" class="search-query form-control" placeholder="Ф.И.О. преподавателя">
+                    <i class="icon-search"></i>
+                </div>
+                <li class="lecturerNavItem {{active_all_lecturers}}">
+                  <a>
+                    Все
+                    <i class="icon-ok"></i>
+                  </a>
+                </li>
+                  {{#each lecturers}}
+                    <li class="lecturerNavItem {{active_lecturer}}">
+                      <a>
+                        {{Surname}} {{Name}} {{Patronymic}}
+                        <i class="icon-ok"></i>
+                    </a>
+                    </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </li>
+            <li class="dropdown" >
+              <a href="#" class="dropdown-toggle"
+                data-toggle="dropdown">Аудитории
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingClassrooms}}
+                  <h3>Загрузка списка Аудиторий</h3>
+                {{else}}
                   <div class="search-container">
-                      <input type="text" class="search-query form-control" placeholder="Ф.И.О. преподавателя">
+                      <input type="text" class="search-query form-control" placeholder="Номер аудитории">
                       <i class="icon-search"></i>
                   </div>
-                  <li class="lecturerNavItem {{activeLecturer}}">
+                  <li class="classroomNavItem {{active_all_classrooms}}">
                     <a>
                       Все
                       <i class="icon-ok"></i>
                     </a>
                   </li>
-                    {{#each lecturers}}
-                      <li class="lecturerNavItem {{activeLecturer}}">
-                        <a>
-                          {{Surname}} {{Name}} {{Patronymic}}
-                          <i class="icon-ok"></i>
-                      </a>
-                      </li>
-                    {{/each}}
-                  {{/if}}
-                </ul>
-            </li>
-            <li><a href="#">Аудитории</a>
+                  {{#each classrooms}}
+                  <li class="classroomNavItem {{active_classroom}}">
+                    <a>
+                      {{num}}
+                      <i class="icon-ok"></i>
+                    </a>
+                  </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Отображать по

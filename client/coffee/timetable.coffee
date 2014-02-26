@@ -10,6 +10,7 @@ window.TimetableHandle = Meteor.subscribe "timetable"
 window.LecturersHandle = Meteor.subscribe "lecturers"
 window.SubjectsHandle = Meteor.subscribe "subjects"
 window.GroupsHandle = Meteor.subscribe "groups"
+window.ClassroomsHandle = Meteor.subscribe "classrooms"
 
 Meteor.startup ->
   Session.set "displayed_for", "groups"

@@ -709,11 +709,13 @@ Meteor.startup ->
     else
         console.log Timetable.find().count()+ " classes in timetable"
 
-Meteor.publish "groups", () ->
+Meteor.publish "groups", ->
     Groups.find()
-Meteor.publish "lecturers", () ->
+Meteor.publish "lecturers", ->
     Lecturers.find()
-Meteor.publish "subjects", () ->
+Meteor.publish "subjects", ->
     Subjects.find()
-Meteor.publish "timetable", () ->
+Meteor.publish "classrooms", ->
+    Classrooms.find()
+Meteor.publish "timetable", ->
     Timetable.find()
