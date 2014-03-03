@@ -203,7 +203,7 @@ Meteor.startup ->
     # ============================Понедельник===================================
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
       classRoom: 408
@@ -213,7 +213,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
       classRoom: 408
@@ -223,7 +223,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
       classRoom: 408
@@ -232,7 +232,7 @@ Meteor.startup ->
     )
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
       classRoom: 402
@@ -241,7 +241,7 @@ Meteor.startup ->
     )
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
       classRoom: 402
@@ -251,7 +251,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
       classRoom: 402
@@ -262,7 +262,7 @@ Meteor.startup ->
     # ============================Вторник===================================
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Безопасность и защита данных")._id
       lecturer: Lecturers.findOne(Name: "Олег")._id
       classRoom: 416
@@ -272,7 +272,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"WEB-дизайн")._id
       lecturer: Lecturers.findOne(Name: "Надежда")._id
       classRoom: 402
@@ -282,7 +282,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"WEB-дизайн")._id
       lecturer: Lecturers.findOne(Name: "Надежда")._id
       classRoom: 402
@@ -292,7 +292,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
       classRoom: 416
@@ -302,7 +302,7 @@ Meteor.startup ->
 
     Timetable.insert(
         group: Groups.findOne(Title:"СИИ2")._id
-        type: all
+        type: "all"
         subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
         lecturer: Lecturers.findOne(Name: "Виктор")._id
         classRoom: 416
@@ -312,7 +312,7 @@ Meteor.startup ->
 
     Timetable.insert(
         group: Groups.findOne(Title:"СИИ3")._id
-        type: all
+        type: "all"
         subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
         lecturer: Lecturers.findOne(Name: "Виктор")._id
         classRoom: 416
@@ -322,7 +322,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: top
+      type: "top"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
       classRoom: 413
@@ -332,7 +332,7 @@ Meteor.startup ->
 
     Timetable.insert(
         group: Groups.findOne(Title:"СИИ1")._id
-        type: bot
+        type: "bot"
         subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
         lecturer: Lecturers.findOne(Name: "Виктор")._id
         classRoom: 408
@@ -342,7 +342,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: top
+      type: "top"
       subject: Subjects.findOne(Title:"WEB-дизайн")._id
       lecturer: Lecturers.findOne(Name: "Надежда")._id
       classRoom: 409
@@ -352,7 +352,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
       classRoom: 408
@@ -362,7 +362,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
       classRoom: 408
@@ -372,7 +372,7 @@ Meteor.startup ->
     # ============================Среда===================================
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
       classRoom: 408
@@ -382,7 +382,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
       classRoom: 408
@@ -392,7 +392,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
       classRoom: 408
@@ -402,7 +402,7 @@ Meteor.startup ->
 
     Timetable.insert(
         group: Groups.findOne(Title:"СИИ1")._id
-        type: top
+        type: "top"
         subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
         lecturer: Lecturers.findOne(Name: "Тимофей")._id
         classRoom: 402
@@ -412,7 +412,7 @@ Meteor.startup ->
 
     Timetable.insert(
         group: Groups.findOne(Title:"СИИ2")._id
-        type: bot
+        type: "bot"
         subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
         lecturer: Lecturers.findOne(Name: "Тимофей")._id
         classRoom: 402
@@ -422,7 +422,7 @@ Meteor.startup ->
 
     Timetable.insert(
         group: Groups.findOne(Title:"СИИ1")._id
-        type: all
+        type: "all"
         subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
         lecturer: Lecturers.findOne(Name: "Тимофей")._id
         classRoom: 416
@@ -432,7 +432,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
       lecturer: Lecturers.findOne(Name: "Тимофей")._id
       classRoom: 416
@@ -442,7 +442,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
       lecturer: Lecturers.findOne(Name: "Тимофей")._id
       classRoom: 416
@@ -452,7 +452,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Безопасность и защита данных")._id
       lecturer: Lecturers.findOne(Name: "Олег")._id
       classRoom: 415
@@ -462,7 +462,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
       classRoom: 408
@@ -472,7 +472,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
       classRoom: 408
@@ -482,7 +482,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
       classRoom: 408
@@ -492,7 +492,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
       lecturer: Lecturers.findOne(Name: "Тимофей")._id
       classRoom: 408
@@ -502,7 +502,7 @@ Meteor.startup ->
     # ============================Четверг===================================
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Рендеринг")._id
       lecturer: Lecturers.findOne(Name: "Игорь")._id
       classRoom: 416
@@ -512,7 +512,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Рендеринг")._id
       lecturer: Lecturers.findOne(Name: "Игорь")._id
       classRoom: 416
@@ -522,7 +522,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Рендеринг")._id
       lecturer: Lecturers.findOne(Name: "Игорь")._id
       classRoom: 416
@@ -532,7 +532,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Рендеринг")._id
       lecturer: Lecturers.findOne(Name: "Игорь")._id
       classRoom: 416
@@ -542,7 +542,7 @@ Meteor.startup ->
     # ============================Пятница===================================
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Оборудование компьютерных сетей")._id
       lecturer: Lecturers.findOne(Name: "Юрий")._id
       classRoom: 312
@@ -552,7 +552,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
       classRoom: 408
@@ -562,7 +562,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
       classRoom: 408
@@ -572,7 +572,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: all
+      type: "all"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
       classRoom: 408
@@ -582,7 +582,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ1")._id
-      type: top
+      type: "top"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
       classRoom: 415
@@ -592,7 +592,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ2")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
       classRoom: 415
@@ -602,7 +602,7 @@ Meteor.startup ->
 
     Timetable.insert(
       group: Groups.findOne(Title:"СИИ3")._id
-      type: bot
+      type: "bot"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
       classRoom: 409

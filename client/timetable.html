@@ -19,35 +19,3 @@
   </footer>
 </Template>
 
-<Template name="mainTable">
-  {{#if loading}}
-    <h3>Загрузка информации</h3>
-  {{else}}
-    <table class="table table-bordered">
-      <thead>
-        <td></td>
-        <td>№</td>
-        {{#if displayedForGroups}}
-          {{#each Groups}}
-          <td>{{Title}}</td>
-          {{/each}}
-        {{else}}
-          {{#each Lecturers}}
-          <td>{{lectName}}</td>
-          {{/each}}
-        {{/if}}
-      </thead>
-      <tbody>
-      {{#if displayedForGroups}}
-        {{#each arrayify studyDays}}
-          {{> dayTimetable}}
-        {{/each}}
-      {{else}}
-        {{#each arrayify workDays}}
-          {{> dayTimetable}}
-        {{/each}}
-      {{/if}}
-      </tbody>
-    </table>
-  {{/if}}
-</Template>
