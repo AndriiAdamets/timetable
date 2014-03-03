@@ -34,3 +34,6 @@ Template.dayTimetable.botLect = ->
 
 Template.dayTimetable.classesCount = ->
   _.keys(@.value).length+1
+
+Template.dayTimetable.doubleClassesCount = ->
+  (_.keys(@.value).length)*3+1

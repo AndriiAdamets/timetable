@@ -6,26 +6,14 @@
       <thead>
         <td></td>
         <td>№</td>
-        {{#if displayedForGroups}}
           {{#each Groups}}
           <td>{{Title}}</td>
           {{/each}}
-        {{else}}
-          {{#each Lecturers}}
-          <td>{{lectName}}</td>
-          {{/each}}
-        {{/if}}
       </thead>
       <tbody>
-      {{#if displayedForGroups}}
         {{#each arrayify studyDays}}
           {{> dayTimetable}}
         {{/each}}
-      {{else}}
-        {{#each arrayify workDays}}
-          {{> dayTimetable}}
-        {{/each}}
-      {{/if}}
       </tbody>
     </table>
   {{/if}}

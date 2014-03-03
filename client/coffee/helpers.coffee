@@ -5,11 +5,34 @@ Handlebars.registerHelper('arrayify', (obj)->
   result
   )
 
+Handlebars.registerHelper('ifAll', (key, options) ->
+  if(key.type is "all" and key isnt undefined)
+    options.fn @
+  options.inverse @
+)
+
+Handlebars.registerHelper('ifTop', (key, options) ->
+  if(key.type is "top" and key isnt undefined)
+    options.fn @
+  options.inverse @
+)
+
+Handlebars.registerHelper('ifBot', (key, options) ->
+  if(key.type is "bot" and key isnt undefined)
+    options.fn @
+  options.inverse @
+)
+
+Handlebars.registerHelper('ifNotBot', (key, options) ->
+  if(key.type is "bot" and key isnt undefined)
+    options.inverse @
+  options.fn @
+)
 
 window.templateRender = (templateName)->
   $ ->
     fragment = Meteor.render(->
-      Template[templateName]() # this calls the template and returns the HTML.
+      Template[templateName]() # @ calls the template and returns the HTML.
     )
     $("body").html fragment
 

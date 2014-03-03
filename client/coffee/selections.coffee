@@ -4,6 +4,9 @@ window.display_for_groups = ->
   active_lecturers = Session.get "active_lecturers"
   active_classrooms = Session.get "active_classrooms"
   table = {}
+  # i: number of day
+  # j: number of class
+  # k: group
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
   for i in dayNums
     table[i] = {}

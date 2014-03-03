@@ -1,0 +1,17 @@
+<!-- two strings of lections -->
+<Template name="class">
+<!-- Top week or all weeks -->
+<tr>
+  {{#each arrayify value}}
+    {{#ifAll value}}
+
+    {{/ifAll}}
+  {{/each}}
+</tr>
+
+<!-- Bottom week -->
+<tr>
+  {{#each arrayify value}}
+    <td>{{value.type}}</td>
+  {{/each}}</tr>
+</Template>
