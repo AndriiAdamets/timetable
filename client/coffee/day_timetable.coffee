@@ -30,8 +30,6 @@ Template.dayTimetable.botLect = ->
   lecturer = Lecturers.findOne(_id : @.value.bot.lecturer)
   lecturer.Surname + " " + lecturer.Name[0] + ". " + lecturer.Patronymic[0]+"."
 
-
-
 Template.dayTimetable.classesCount = ->
   _.keys(@.value).length+1
 

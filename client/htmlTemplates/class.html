@@ -1,17 +1,52 @@
 <!-- two strings of lections -->
 <Template name="class">
-<!-- Top week or all weeks -->
 <tr>
   {{#each arrayify value}}
-    {{#ifAll value}}
-
-    {{/ifAll}}
+    {{#if hasAll value}}
+      <td rowspan="2">
+        all {{value.all.dayNo}}
+        <br />
+        {{value.all.classNo}}
+      </td>
+      {{else}}
+        {{#if hasTop value}}
+          <td>
+            Top
+            {{value.top.dayNo}}
+            <br />
+            {{value.top.classNo}}
+          </td>
+        {{else}}
+          <td>— top</td>
+        {{/if}}
+      {{/if}}
   {{/each}}
 </tr>
 
-<!-- Bottom week -->
 <tr>
   {{#each arrayify value}}
-    <td>{{value.type}}</td>
-  {{/each}}</tr>
+    {{#if hasntAll value}}
+      {{#if hasBot value}}
+        <td>
+          Bot
+          {{value.bot.dayNo}}
+          <br />
+          {{value.bot.classNo}}
+        </td>
+      {{else}}
+        <td>— bot</td>
+      {{/if}}
+    {{/if}}
+  {{/each}}
+</tr>
+</Template>
+
+<Template name="allCell">
+  <td rowspan="2">
+    {{first}}
+    <br />
+    {{second}}
+    <br />
+    {{third}}
+  </td>
 </Template>

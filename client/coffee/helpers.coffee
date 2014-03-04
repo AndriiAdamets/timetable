@@ -29,6 +29,26 @@ Handlebars.registerHelper('ifNotBot', (key, options) ->
   options.fn @
 )
 
+Handlebars.registerHelper('hasAll', (key)->
+  return true if key['all']._id isnt undefined
+  false
+  )
+
+Handlebars.registerHelper('hasntAll', (key)->
+  return true if key['all']._id is undefined
+  false
+  )
+
+Handlebars.registerHelper('hasTop', (key)->
+  return true if key['top']._id isnt undefined
+  false
+  )
+
+Handlebars.registerHelper('hasBot', (key)->
+  return true if key['bot']._id isnt undefined
+  false
+  )
+
 window.templateRender = (templateName)->
   $ ->
     fragment = Meteor.render(->
