@@ -3,21 +3,12 @@
 <tr>
   {{#each arrayify value}}
     {{#if hasAll value}}
-      <td rowspan="2">
-        all {{value.all.dayNo}}
-        <br />
-        {{value.all.classNo}}
-      </td>
+      {{> allCell}}
       {{else}}
         {{#if hasTop value}}
-          <td>
-            Top
-            {{value.top.dayNo}}
-            <br />
-            {{value.top.classNo}}
-          </td>
+          {{> topCell}}
         {{else}}
-          <td>— top</td>
+          <td>—</td>
         {{/if}}
       {{/if}}
   {{/each}}
@@ -27,14 +18,9 @@
   {{#each arrayify value}}
     {{#if hasntAll value}}
       {{#if hasBot value}}
-        <td>
-          Bot
-          {{value.bot.dayNo}}
-          <br />
-          {{value.bot.classNo}}
-        </td>
+        {{> botCell}}
       {{else}}
-        <td>— bot</td>
+        <td>—</td>
       {{/if}}
     {{/if}}
   {{/each}}
@@ -43,6 +29,26 @@
 
 <Template name="allCell">
   <td rowspan="2">
+    {{first}}
+    <br />
+    {{second}}
+    <br />
+    {{third}}
+  </td>
+</Template>
+
+<Template name="topCell">
+  <td>
+    {{first}}
+    <br />
+    {{second}}
+    <br />
+    {{third}}
+  </td>
+</Template>
+
+<Template name="botCell">
+  <td>
     {{first}}
     <br />
     {{second}}

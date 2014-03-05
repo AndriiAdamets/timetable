@@ -186,6 +186,11 @@ Meteor.startup ->
     )
 
     Classrooms.insert(
+      num: 413
+      roomines: 15
+    )
+
+    Classrooms.insert(
       num: 415
       roomines: 20
     )
@@ -206,7 +211,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 1
       classNo: 1
     )
@@ -216,7 +221,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 1
       classNo: 1
     )
@@ -226,7 +231,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 1
       classNo: 1
     )
@@ -235,7 +240,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
-      classRoom: 402
+      classRoom: Classrooms.findOne(num: 402)._id
       dayNo: 1
       classNo: 2
     )
@@ -244,7 +249,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
-      classRoom: 402
+      classRoom: Classrooms.findOne(num: 402)._id
       dayNo: 1
       classNo: 2
     )
@@ -254,7 +259,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Распределённые Вычисления")._id
       lecturer: Lecturers.findOne(Name: "Ярослав")._id
-      classRoom: 402
+      classRoom: Classrooms.findOne(num: 402)._id
       dayNo: 1
       classNo: 3
     )
@@ -265,7 +270,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Безопасность и защита данных")._id
       lecturer: Lecturers.findOne(Name: "Олег")._id
-      classRoom: 416
+      classRoom: Classrooms.findOne(num: 416)._id
       dayNo: 2
       classNo: 4
     )
@@ -275,7 +280,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"WEB-дизайн")._id
       lecturer: Lecturers.findOne(Name: "Надежда")._id
-      classRoom: 402
+      classRoom: Classrooms.findOne(num: 402)._id
       dayNo: 2
       classNo: 4
     )
@@ -285,7 +290,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"WEB-дизайн")._id
       lecturer: Lecturers.findOne(Name: "Надежда")._id
-      classRoom: 402
+      classRoom: Classrooms.findOne(num: 402)._id
       dayNo: 2
       classNo: 4
     )
@@ -295,7 +300,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
-      classRoom: 416
+      classRoom: Classrooms.findOne(num: 416)._id
       dayNo: 2
       classNo: 5
     )
@@ -305,7 +310,7 @@ Meteor.startup ->
         type: "all"
         subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
         lecturer: Lecturers.findOne(Name: "Виктор")._id
-        classRoom: 416
+        classRoom: Classrooms.findOne(num: 416)._id
         dayNo: 2
         classNo: 5
     )
@@ -315,7 +320,7 @@ Meteor.startup ->
         type: "all"
         subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
         lecturer: Lecturers.findOne(Name: "Виктор")._id
-        classRoom: 416
+        classRoom: Classrooms.findOne(num: 416)._id
         dayNo: 2
         classNo: 5
     )
@@ -325,7 +330,7 @@ Meteor.startup ->
       type: "top"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
-      classRoom: 413
+      classRoom: Classrooms.findOne(num: 413)._id
       dayNo: 2
       classNo: 6
     )
@@ -335,7 +340,7 @@ Meteor.startup ->
         type: "bot"
         subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
         lecturer: Lecturers.findOne(Name: "Виктор")._id
-        classRoom: 408
+        classRoom: Classrooms.findOne(num: 408)._id
         dayNo: 2
         classNo: 6
     )
@@ -345,7 +350,7 @@ Meteor.startup ->
       type: "top"
       subject: Subjects.findOne(Title:"WEB-дизайн")._id
       lecturer: Lecturers.findOne(Name: "Надежда")._id
-      classRoom: 409
+      classRoom: Classrooms.findOne(num: 409)._id
       dayNo: 2
       classNo: 6
     )
@@ -355,7 +360,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 2
       classNo: 6
     )
@@ -365,7 +370,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 2
       classNo: 6
     )
@@ -375,7 +380,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 3
       classNo: 2
     )
@@ -385,7 +390,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 3
       classNo: 2
     )
@@ -395,7 +400,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 3
       classNo: 2
     )
@@ -405,7 +410,7 @@ Meteor.startup ->
         type: "top"
         subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
         lecturer: Lecturers.findOne(Name: "Тимофей")._id
-        classRoom: 402
+        classRoom: Classrooms.findOne(num: 402)._id
         dayNo: 3
         classNo: 3
     )
@@ -415,7 +420,7 @@ Meteor.startup ->
         type: "bot"
         subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
         lecturer: Lecturers.findOne(Name: "Тимофей")._id
-        classRoom: 402
+        classRoom: Classrooms.findOne(num: 402)._id
         dayNo: 3
         classNo: 3
     )
@@ -425,7 +430,7 @@ Meteor.startup ->
         type: "all"
         subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
         lecturer: Lecturers.findOne(Name: "Тимофей")._id
-        classRoom: 416
+        classRoom: Classrooms.findOne(num: 416)._id
         dayNo: 3
         classNo: 4
     )
@@ -435,7 +440,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
       lecturer: Lecturers.findOne(Name: "Тимофей")._id
-      classRoom: 416
+      classRoom: Classrooms.findOne(num: 416)._id
       dayNo: 3
       classNo: 4
     )
@@ -445,7 +450,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
       lecturer: Lecturers.findOne(Name: "Тимофей")._id
-      classRoom: 416
+      classRoom: Classrooms.findOne(num: 416)._id
       dayNo: 3
       classNo: 4
     )
@@ -455,7 +460,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Безопасность и защита данных")._id
       lecturer: Lecturers.findOne(Name: "Олег")._id
-      classRoom: 415
+      classRoom: Classrooms.findOne(num: 415)._id
       dayNo: 3
       classNo: 5
     )
@@ -465,7 +470,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 3
       classNo: 5
     )
@@ -475,7 +480,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Вычислительный Интеллект")._id
       lecturer: Lecturers.findOne(Name: "Сергей")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 3
       classNo: 6
     )
@@ -485,7 +490,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Современные Internet-технологии")._id
       lecturer: Lecturers.findOne(Name: "Виктор")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 3
       classNo: 6
     )
@@ -495,7 +500,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Управление информацией и знаниями")._id
       lecturer: Lecturers.findOne(Name: "Тимофей")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 3
       classNo: 6
     )
@@ -505,7 +510,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Рендеринг")._id
       lecturer: Lecturers.findOne(Name: "Игорь")._id
-      classRoom: 416
+      classRoom: Classrooms.findOne(num: 416)._id
       dayNo: 4
       classNo: 2
     )
@@ -515,7 +520,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Рендеринг")._id
       lecturer: Lecturers.findOne(Name: "Игорь")._id
-      classRoom: 416
+      classRoom: Classrooms.findOne(num: 416)._id
       dayNo: 4
       classNo: 2
     )
@@ -525,7 +530,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Рендеринг")._id
       lecturer: Lecturers.findOne(Name: "Игорь")._id
-      classRoom: 416
+      classRoom: Classrooms.findOne(num: 416)._id
       dayNo: 4
       classNo: 3
     )
@@ -535,7 +540,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Рендеринг")._id
       lecturer: Lecturers.findOne(Name: "Игорь")._id
-      classRoom: 416
+      classRoom: Classrooms.findOne(num: 416)._id
       dayNo: 4
       classNo: 3
     )
@@ -545,7 +550,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Оборудование компьютерных сетей")._id
       lecturer: Lecturers.findOne(Name: "Юрий")._id
-      classRoom: 312
+      classRoom: Classrooms.findOne(num: 312)._id
       dayNo: 5
       classNo: 1
     )
@@ -555,7 +560,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 5
       classNo: 3
     )
@@ -565,7 +570,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 5
       classNo: 3
     )
@@ -575,7 +580,7 @@ Meteor.startup ->
       type: "all"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
-      classRoom: 408
+      classRoom: Classrooms.findOne(num: 408)._id
       dayNo: 5
       classNo: 3
     )
@@ -585,7 +590,7 @@ Meteor.startup ->
       type: "top"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
-      classRoom: 415
+      classRoom: Classrooms.findOne(num: 415)._id
       dayNo: 5
       classNo: 4
     )
@@ -595,7 +600,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
-      classRoom: 415
+      classRoom: Classrooms.findOne(num: 415)._id
       dayNo: 5
       classNo: 4
     )
@@ -605,7 +610,7 @@ Meteor.startup ->
       type: "bot"
       subject: Subjects.findOne(Title:"Технологии Искуственного Интеллекта")._id
       lecturer: Lecturers.findOne(Name: "Марина")._id
-      classRoom: 409
+      classRoom: Classrooms.findOne(num: 409)._id
       dayNo: 5
       classNo: 6
     )

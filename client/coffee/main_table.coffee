@@ -1,15 +1,34 @@
-Template.mainTemplate.data = ->
-  display_for_groups()
+Template.mainTable.data = ->
+  if Session.equals "displayed_for", "groups"
+    return display_for_groups()
+  if Session.equals "displayed_for", "lecturers"
+    return display_for_lecturers()
+  if Session.equals "displayed_for", "classrooms"
+    return display_for_classrooms()
 
 Template.mainTable.loading = ->
   TimetableHandle and not TimetableHandle.ready()
 
-Template.mainTable.Groups = ->
-  displayedGroupId = Session.get "displayedGroup"
-  if displayedGroupId is undefined
-    Groups.find({}, {sort:{Title:1}})
-  else
-    Groups.find({_id: displayedGroupId}, {sort:{Title:1}})
+Template.mainTable.headCells = ->
+  selector = {}
+  if Session.equals "displayed_for", "groups"
+    active_groups = Session.get "active_groups"
+    if (active_groups and active_groups.length > 0)
+      selector._id = {$in: active_groups}
+    return _(Groups.find(selector, {sort:{Title:1}}).fetch()).pluck "Title"
+  else if Session.equals "displayed_for", "lecturers"
+    active_lecturers = Session.get "active_lecturers"
+    if (active_lecturers and active_lecturers.Lecturers > 0)
+      selector._id = {$in: active_lecturers}
+    return _(Lecturers.find(selector, {sort:{Surname:1}}).fetch()).pluck "Surname"
+  else if Session.equals "displayed_for", "classrooms"
+    active_classrooms = Session.get "active_classrooms"
+    if (active_classrooms and active_classrooms.length > 0)
+      selector._id = {$in: active_classrooms}
+    return _(Classrooms.find(selector, {sort:{num:1}}).fetch()).pluck "num"
+
+    
+    
 
 Template.mainTable.Lecturers = ->
   displayedLecturerId = Session.get "displayedLecturer"

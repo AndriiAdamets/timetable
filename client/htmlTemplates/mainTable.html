@@ -6,12 +6,12 @@
       <thead>
         <td></td>
         <td>№</td>
-          {{#each Groups}}
-          <td>{{Title}}</td>
+          {{#each headCells}}
+          <td>{{this}}</td>
           {{/each}}
       </thead>
       <tbody>
-        {{#each arrayify studyDays}}
+        {{#each arrayify data}}
           {{> dayTimetable}}
         {{/each}}
       </tbody>

@@ -13,7 +13,7 @@ window.GroupsHandle = Meteor.subscribe "groups"
 window.ClassroomsHandle = Meteor.subscribe "classrooms"
 
 Meteor.startup ->
-  Session.set "displayed_for", "groups"
+  Session.set "displayed_for", "lecturers"
   Session.set "displayedGroup", undefined
   Session.set "displayedLecturer", undefined
   Session.set "displayedForGroups", true
