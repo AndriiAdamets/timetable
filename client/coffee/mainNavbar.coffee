@@ -85,7 +85,6 @@ Template.mainNavbar.events
       , 800
 
   'click li.groupNavItem': ->
-    console.log @
     checkSessionArray "active_groups", @_id
 
   'click li.lecturerNavItem': ->

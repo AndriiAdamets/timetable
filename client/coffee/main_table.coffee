@@ -18,8 +18,7 @@ Template.mainTable.headCells = ->
     return _(Groups.find(selector, {sort:{Title:1}}).fetch()).pluck "Title"
   else if Session.equals "displayed_for", "lecturers"
     active_lecturers = Session.get "active_lecturers"
-    if (active_lecturers and active_lecturers.Lecturers > 0)
-      selector._id = {$in: active_lecturers}
+    selector._id = {$in: active_lecturers} if (active_lecturers and active_lecturers.length > 0)
     return _(Lecturers.find(selector, {sort:{Surname:1}}).fetch()).pluck "Surname"
   else if Session.equals "displayed_for", "classrooms"
     active_classrooms = Session.get "active_classrooms"
@@ -27,8 +26,8 @@ Template.mainTable.headCells = ->
       selector._id = {$in: active_classrooms}
     return _(Classrooms.find(selector, {sort:{num:1}}).fetch()).pluck "num"
 
-    
-    
+
+
 
 Template.mainTable.Lecturers = ->
   displayedLecturerId = Session.get "displayedLecturer"
@@ -63,72 +62,3 @@ Template.mainTable.loadingSubjects = ->
 
 Template.mainTable.studyDays = ->
   display_for_groups()
-  # displayedGroupId = Session.get "displayedGroup"
-  # dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
-  # table = {}
-  # for i in dayNums
-  #   table[i] = {}
-  #   classNums = _.uniq(_(Timetable.find().fetch()).pluck "classNo", false)
-  #   for j in classNums
-  #     table[i][j] = {}
-  #     if displayedGroupId is undefined
-  #       grps = _.uniq(_(Timetable.find().fetch()).pluck "group", false)
-  #     else
-  #       # grps = _.uniq(_(Timetable.find('$or': [{group: displayedGroupId}, {group: GroupId2}]).fetch()).pluck "group", false)
-  #       grps = _.uniq(_(Timetable.find({group: displayedGroupId}).fetch()).pluck "group", false)
-  #     for k in grps
-  #       if Timetable.findOne(dayNo: i, classNo:j, group: k) isnt undefined
-  #         table[i][j][k] = Timetable.findOne(dayNo: i, classNo:j, group: k).classes
-  #       else
-  #         table[i][j][k] = {}
-  #     if Session.equals "showEmptyClasses", false
-  #       hasClasses = false
-  #       for l in grps
-  #         hasClasses = true if _.keys(table[i][j][l]).length
-  #       delete table[i][j] unless hasClasses
-  #   if Session.equals "showEmptyClasses", false
-  #     delete table[i] unless _.keys(table[i]).length
-  # table
-
-# Template.mainTable.workDays = ->
-#   displayedLecturerId = Session.get "displayedLecturer"
-#   # Days of week
-#   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
-#   table = {}
-#   for i in dayNums
-#     table[i] = {}
-#     classNums = _.uniq(_(Timetable.find().fetch()).pluck "classNo", false)
-#       # Numbers of classes
-#     for j in classNums
-#       table[i][j] = {}
-#       classes = Timetable.find().fetch()
-#       lctrs = {}
-#       if displayedLecturerId is undefined
-#         for c in classes
-#           for l in ["bot", "top", "all"] #when c[l]
-#             lctrs[c.classes[l].lecturer] = 1 if c.classes[l]
-#       else
-#         lctrs[displayedLecturerId] = 1
-#       lctrs = _.keys(lctrs)
-
-#       for k in lctrs
-#         allClasses = Timetable.find({dayNo: i, classNo:j}).fetch()
-#         Class = {}
-#         for m in allClasses
-#           for m1 in ["bot", "top", "all"]
-#             if m.classes[m1]
-#               if m.classes[m1].lecturer is k
-#                 Class[m1] = m.classes[m1] unless Class[m1]
-#                 if Class[m1].groups
-#                   Class[m1].groups.push m.group
-#                 else
-#                   Class[m1].groups = [m.group]
-#         table[i][j][k] = Class
-#       if Session.equals "showEmptyClasses", false
-#         hasClasses = false
-#         for l in lctrs
-#           hasClasses = true if _.keys(table[i][j][l]).length
-#         delete table[i][j] unless hasClasses
-#     if Session.equals "showEmptyClasses", false
-#       delete table[i] unless _.keys(table[i]).length
-#   table
