@@ -1,0 +1,25 @@
+<Template name="lecturersTable">
+  <table id="tableLecturers" class="table table-bordered">
+    <thead>
+      <th>Фамилия</th><th>Имя</th><th>Отчество</th><th></th>
+    </thead>
+    <tbody>
+      {{#each lecturers}}
+      <tr>
+        <td contenteditable>{{Surname}}</td>
+        <td contenteditable>{{Name}}</td>
+        <td contenteditable>{{Patronymic}}</td>
+        <td><button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button></td>
+      </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td><input name="lecturer_surname"></td>
+        <td><input name="lecturer_name"></td>
+        <td><input name="lecturer_patronymic"></td>
+        <td><button class="btn btn-success btn-mini">Добавить</button></td>
+      </tr>
+    </tfoot>
+  </table>
+</Template>

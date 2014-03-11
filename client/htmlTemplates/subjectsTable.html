@@ -1,0 +1,18 @@
+<Template name="subjectsTable">
+  <table id="tableLecturers" class="table table-bordered">
+    <thead>
+      <th>Название</th><th>Описание</th><th></th>
+    </thead>
+    <tbody>
+      {{#each subjects}}
+      <tr>
+        <td contenteditable>{{Title}}</td>
+        <td contenteditable>{{Discription}}</td>
+        <td>
+          <button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</Template>

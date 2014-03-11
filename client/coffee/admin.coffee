@@ -32,6 +32,18 @@ Template.leftSideAdminMenu.events
     Session.set "displayed_table", li.attr "value"
     $("#admin_page_header").text $(li).text()
 
+Template.tablesContainer.display_groups = ->
+  Session.equals "displayed_table", "groups"
+
+Template.tablesContainer.display_lecturers = ->
+  Session.equals "displayed_table", "lecturers"
+
+Template.tablesContainer.display_classrooms = ->
+  Session.equals "displayed_table", "classrooms"
+
+Template.tablesContainer.display_subjects = ->
+  Session.equals "displayed_table", "subjects"
+
 Template.groupsTable.events
   "click .btn-danger": ->
     timetable = Timetable.find(group: @_id).fetch()
@@ -65,3 +77,6 @@ Template.subjectsTable.events
 
 Template.subjectsTable.subjects = ->
   Subjects.find({}, sort:{Title:1})
+
+Template.classroomsTable.classrooms = ->
+  Classrooms.find()

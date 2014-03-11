@@ -1,0 +1,25 @@
+<Template name="classroomsTable">
+  <table id="tableGroups" class="table table-bordered">
+    <thead>
+      <th>Номер</th><th>Вместимость</th><th></th>
+    </thead>
+    <tbody>
+      {{#each classrooms}}
+        <tr>
+          <td contenteditable>{{num}}</td>
+          <td contenteditable>{{roomines}}</td>
+          <td>
+            <button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td><input name="classroom_num"></td>
+        <td><input name="classroom_roomines"></td>
+        <td><button class="btn btn-success btn-mini">Добавить</button></td>
+      </tr>
+    </tfoot>
+  </table>
+</Template>
