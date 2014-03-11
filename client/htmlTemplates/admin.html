@@ -1,5 +1,6 @@
 <Template name="adminPage">
-	{{#if currentUser}}
+  {{#if currentUser}}
+    <h1 id="admin_page_header" class="main-header">{{header_text}}</h1>
     <div class="row">
       <div class="span3">
         {{> leftSideAdminMenu}}

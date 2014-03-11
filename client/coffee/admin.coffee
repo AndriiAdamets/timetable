@@ -10,6 +10,15 @@ Template.loginForm.events
         $("#signinError").hide()
     return false
 
+Template.leftSideAdminMenu.rendered = ->
+  items = $(".admin_leftside_menu_item")
+  for item in items
+    $(item).removeClass "active"
+  $(items[0]).addClass "active"
+  $("#admin_page_header").text $(".admin_leftside_menu_item.active a").text()
+
+  Session.set "displayed_table", $(items[0]).attr "value"
+
 Template.leftSideAdminMenu.events
   "click #logout" : ->
     Meteor.logout()
@@ -21,6 +30,7 @@ Template.leftSideAdminMenu.events
       $(item).removeClass "active"
     $(li).addClass "active"
     Session.set "displayed_table", li.attr "value"
+    $("#admin_page_header").text $(li).text()
 
 Template.groupsTable.events
   "click .btn-danger": ->
