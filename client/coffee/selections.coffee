@@ -4,6 +4,8 @@ window.display_for_groups = ->
   active_classrooms = Session.get "active_classrooms"
   table = {}
   grps_selector = {}
+  selector = {}
+  selector.lecturer = {$in: active_lecturers} if (active_lecturers and active_lecturers.length > 0)
   if (active_groups and active_groups.length > 0)
     grps_selector._id = {$in: active_groups}
   # i: number of day
@@ -11,22 +13,20 @@ window.display_for_groups = ->
   # k: group
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
   for i in dayNums
+    selector.dayNo = i
     table[i] = {}
     classNums = _.uniq(_(Timetable.find().fetch()).pluck "classNo", false)
     for j in classNums
+      selector.classNo = j
       table[i][j] = {}
       grps = _.uniq(_(Groups.find(grps_selector, {sort:{Title:1}}).fetch()).pluck "_id", false)
       for k in grps
+        selector.group = k
         table[i][j][k] = {}
         for l in ['all', 'top', 'bot']
-          if Timetable.findOne(dayNo: i, classNo:j, group: k, type: l)
-            selector = {}
-            selector.dayNo = i
-            selector.classNo = j
-            selector.group = k
-            selector.type = l
-            selector.lecturer = {$in: active_lecturers} if (active_lecturers and active_lecturers.length > 0)
-            table[i][j][k][l] = Timetable.findOne(selector)
+          selector.type = l
+          if Timetable.findOne selector #(dayNo: i, classNo:j, group: k, type: l)
+            table[i][j][k][l] = Timetable.findOne selector
           else
             table[i][j][k][l] = {}
       if Session.equals "showEmptyClasses", false
@@ -46,6 +46,7 @@ window.display_for_lecturers = ->
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
   table = {}
   lctrs_selector = {}
+  selector = {}
   if (active_lecturers and active_lecturers.length > 0)
     lctrs_selector._id = {$in: active_lecturers}
   # i: number of day
@@ -53,22 +54,21 @@ window.display_for_lecturers = ->
   # k: lecturer
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
   for i in dayNums
+    selector.dayNo = i
     table[i] = {}
     classNums = _.uniq(_(Timetable.find().fetch()).pluck "classNo", false)
     for j in classNums
+      selector.classNo = j
       table[i][j] = {}
       lctrs = _.uniq(_(Lecturers.find(lctrs_selector, {sort:{Surname:1}}).fetch()).pluck "_id", false)
       for k in lctrs
+        selector.lecturer = k
         table[i][j][k] = {}
         for l in ['all', 'top', 'bot']
-          if Timetable.findOne(dayNo: i, classNo:j, lecturer: k, type: l)
-            selector = {}
-            selector.dayNo = i
-            selector.classNo = j
-            selector.lecturer = k
-            selector.type = l
+          selector.type = l
+          if Timetable.findOne selector #(dayNo: i, classNo:j, lecturer: k, type: l)
             # selector.lecturer = {$in: active_lecturers} if (active_lecturers and active_lecturers.length > 0)
-            table[i][j][k][l] = Timetable.findOne(selector)
+            table[i][j][k][l] = Timetable.findOne selector
           else
             table[i][j][k][l] = {}
       if Session.equals "showEmptyClasses", false
@@ -87,6 +87,7 @@ window.display_for_classrooms = ->
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
   table = {}
   class_selector = {}
+  selector = {}
   if (active_classrooms and active_classrooms.length > 0)
     class_selector._id = {$in: active_classrooms}
   # i: number of day
@@ -94,22 +95,21 @@ window.display_for_classrooms = ->
   # k: classroom
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
   for i in dayNums
+    selector.dayNo = i
     table[i] = {}
     classNums = _.uniq(_(Timetable.find().fetch()).pluck "classNo", false)
     for j in classNums
+      selector.classNo = j
       table[i][j] = {}
       classes = _.uniq(_(Classrooms.find(class_selector, {sort:{num:1}}).fetch()).pluck "_id", false)
       for k in classes
+        selector.classRoom = k
         table[i][j][k] = {}
         for l in ['all', 'top', 'bot']
-          if Timetable.findOne(dayNo: i, classNo:j, classRoom: k, type: l)
-            selector = {}
-            selector.dayNo = i
-            selector.classNo = j
-            selector.classRoom = k
-            selector.type = l
+          selector.type = l
+          if Timetable.findOne selector #(dayNo: i, classNo:j, classRoom: k, type: l)
             # selector.lecturer = {$in: active_lecturers} if (active_lecturers and active_lecturers.length > 0)
-            table[i][j][k][l] = Timetable.findOne(selector)
+            table[i][j][k][l] = Timetable.findOne selector
           else
             table[i][j][k][l] = {}
           # console.log "Find:", table[i][j][k][l]
