@@ -14,12 +14,21 @@ Template.leftSideAdminMenu.events
   "click #logout" : ->
     Meteor.logout()
 
+  "click .admin_leftside_menu_item": (e)->
+    li = $(e.target).parent()
+    items = $(".admin_leftside_menu_item")
+    for item in items
+      $(item).removeClass "active"
+    $(li).addClass "active"
+    Session.set "displayed_table", li.attr "value"
+
 Template.groupsTable.events
   "click .btn-danger": ->
     timetable = Timetable.find(group: @_id).fetch()
     for i in timetable
       Timetable.remove i._id
     Groups.remove @_id
+
 Template.groupsTable.groups = ->
   Groups.find({}, {sort:{Title:1}})
 

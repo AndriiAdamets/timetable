@@ -8,13 +8,13 @@
         {{> subjectsTable}}
       </div>
     </div>
-	{{else}}
-		{{> loginForm}}
-	{{/if}}
+  {{else}}
+    {{> loginForm}}
+  {{/if}}
 </Template>
 
 <Template name="loginForm">
-	<div class="container">
+  <div class="container">
       <form class="form-signin" action="action">
         <h2 class="form-signin-heading">Введите логин и пароль</h2>
         <input id="login" type="text" class="input-block-level" placeholder="Логин" autocomplete="off" keyev="true" clickev="true">
@@ -28,9 +28,10 @@
 <Template name="leftSideAdminMenu">
   <div class="side-nav well">
     <ul class="nav nav-list">
-      <li class="{{active}}"><a href="groups">Группы</a></li>
-      <li><a class="{{active}}" href="lecturers">Преподаватели</a></li>
-      <li><a class="{{active}}" href="timetable">Расписание</a></li>
+      <li class="admin_leftside_menu_item" value="groups"><a>Группы</a></li>
+      <li class="admin_leftside_menu_item" value="lecturers"><a>Преподаватели</a></li>
+      <li class="admin_leftside_menu_item" value="classrooms"><a>Аудитории</a></li>
+      <li class="admin_leftside_menu_item" value="timetable"><a>Расписание</a></li>
       <li id="logout"><a>Выйти</a></li>
     </ul>
   </div>
@@ -39,11 +40,18 @@
 <Template name="groupsTable">
   <table id="tableGroups" class="table table-bordered">
     <thead>
-      <th>Название</th><th>Тип</th><th>Год</th>
+      <th>Название</th><th>Тип</th><th>Год</th><th></th>
     </thead>
     <tbody>
       {{#each groups}}
-      <tr><td>{{Title}}</td><td>{{Type}}</td><td>{{Year}}</td><td><button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button></td></tr>
+        <tr>
+          <td contenteditable>{{Title}}</td>
+          <td contenteditable>{{Type}}</td>
+          <td contenteditable>{{Year}}</td>
+          <td>
+            <button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button>
+          </td>
+        </tr>
       {{/each}}
     </tbody>
     <tfoot>
@@ -57,11 +65,16 @@
 <Template name="lecturersTable">
   <table id="tableLecturers" class="table table-bordered">
     <thead>
-      <th>Фамилия</th><th>Имя</th><th>Отчество</th>
+      <th>Фамилия</th><th>Имя</th><th>Отчество</th><th></th>
     </thead>
     <tbody>
       {{#each lecturers}}
-      <tr><td>{{Surname}}</td><td>{{Name}}</td><td>{{Patronymic}}</td><td><button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button></td></tr>
+      <tr>
+        <td contenteditable>{{Surname}}</td>
+        <td contenteditable>{{Name}}</td>
+        <td contenteditable>{{Patronymic}}</td>
+        <td><button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button></td>
+      </tr>
       {{/each}}
     </tbody>
   </table>
@@ -70,11 +83,17 @@
 <Template name="subjectsTable">
   <table id="tableLecturers" class="table table-bordered">
     <thead>
-      <th>Название</th><th>Описание</th>
+      <th>Название</th><th>Описание</th><th></th>
     </thead>
     <tbody>
       {{#each subjects}}
-      <tr><td>{{Title}}</td><td>{{Discription}}</td><td><button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button></td></tr>
+      <tr>
+        <td contenteditable>{{Title}}</td>
+        <td contenteditable>{{Discription}}</td>
+        <td>
+          <button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button>
+        </td>
+      </tr>
       {{/each}}
     </tbody>
   </table>
