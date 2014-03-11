@@ -13,11 +13,11 @@ Template.mainNavbar.loadngLecturers = ->
 Template.mainNavbar.loadingClassrooms =->
   ClassroomsHandle and not ClassroomsHandle.ready()
 
-Template.mainNavbar.Title = ->
+Template.mainNavbar.dayTitle = ->
   DaysOfWeek[@-1]
 
 Template.mainNavbar.groups = ->
-  Groups.find({}, {sort:{Title:1}})
+  Groups.find()
 
 Template.mainNavbar.lecturers = ->
   Lecturers.find()

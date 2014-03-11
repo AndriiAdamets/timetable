@@ -25,7 +25,7 @@
                   </div>
                   {{#each days}}
                     <li class="dayNavItem {{activeDay}}">
-                      <a>{{Title}}</a>
+                      <a>{{dayTitle}}</a>
                       </li>
                   {{/each}}
                 {{/if}}
@@ -53,7 +53,7 @@
                   {{#each groups}}
                   <li class="groupNavItem {{active_group}}">
                     <a>
-                      {{_id}}
+                      {{Title}} {{Type}}
                       <i class="icon-ok"></i>
                     </a>
                   </li>
