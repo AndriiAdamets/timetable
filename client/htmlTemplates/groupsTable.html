@@ -1,7 +1,12 @@
 <Template name="groupsTable">
   <table id="tableGroups" class="table table-bordered">
     <thead>
-      <th>Название</th><th>Тип</th><th>Год</th><th></th>
+      <th>Название</th>
+      <th>Тип</th>
+      <th>Год</th>
+      <th>Факультет</th>
+      <th>Численность</th>
+      <th></th>
     </thead>
     <tbody>
       {{#each groups}}
@@ -9,6 +14,8 @@
           <td contenteditable>{{Title}}</td>
           <td contenteditable>{{Type}}</td>
           <td contenteditable>{{Year}}</td>
+          <td contenteditable>{{Department}}</td>
+          <td contenteditable>{{Persons}}</td>
           <td>
             <button  id="{{_id}}"class="btn btn-mini btn-danger">Удалить</button>
           </td>
@@ -19,7 +26,9 @@
       <tr>
         <td><input name="group_title"></td>
         <td><input name="group_type"></td>
-        <td><input name="group_date"></td>
+        <td><input name="group_year"></td>
+        <td><input name="group_department"></td>
+        <td><input name="group_persons"></td>
         <td><button class="btn btn-success btn-mini">Добавить</button></td>
       </tr>
     </tfoot>

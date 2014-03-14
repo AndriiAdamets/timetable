@@ -53,6 +53,20 @@ Template.groupsTable.events
     for i in timetable
       Timetable.remove i._id
     Groups.remove @_id
+  "click .btn-success": ->
+    title = $('input[name="group_title"]').val()
+    type = $('input[name="group_type"]').val()
+    year = $('input[name="group_date"]').val()
+    department = $('input[name="group_department"]').val()
+    persons = $('input[name="group_persons"]').val()
+    Groups.insert(
+      Title: title
+      Type: type
+      Department: department
+      Year: year
+      Persons: persons
+      )
+    # Groups.update({_id:@_id}, {$set:{Title:cells[0].innerHTML}})
 
 
 Template.lecturersTable.lecturers = ->
@@ -64,6 +78,8 @@ Template.lecturersTable.events
     for i in timetable
       Timetable.remove i._id
     Lecturers.remove @_id
+  "click btn-success": ->
+
   "blur td": (e)->
     cells = $(e.target).parent().find "td"
     Lecturers.update({_id: @_id}, {$set:{Surname: cells[0].innerHTML, Name: cells[1].innerHTML, Patronymic: cells[2].innerHTML}})
