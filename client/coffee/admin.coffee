@@ -44,6 +44,9 @@ Template.tablesContainer.display_classrooms = ->
 Template.tablesContainer.display_subjects = ->
   Session.equals "displayed_table", "subjects"
 
+Template.groupsTable.groups = ->
+  Groups.find({}, {sort:{Title:1}})
+
 Template.groupsTable.events
   "click .btn-danger": ->
     timetable = Timetable.find(group: @_id).fetch()
@@ -51,32 +54,44 @@ Template.groupsTable.events
       Timetable.remove i._id
     Groups.remove @_id
 
-Template.groupsTable.groups = ->
-  Groups.find({}, {sort:{Title:1}})
-
-Template.lecturersTable.events
-  "click .btn-danger": ->
-    timetable = Timetable.find().fetch()
-    for i in timetable
-      for j in ["all", "top", "bot"]
-        if i.classes[j]
-          Timetable.remove i._id if i.classes[j].lecturer is @_id
-    Lecturers.remove @_id
 
 Template.lecturersTable.lecturers = ->
   Lecturers.find({}, sort:{Surname:1})
 
-Template.subjectsTable.events
+Template.lecturersTable.events
   "click .btn-danger": ->
-    timetable = Timetable.find().fetch()
+    timetable = Timetable.find(lecturer: @_id).fetch()
     for i in timetable
-      for j in ["all", "top", "bot"]
-        if i.classes[j]
-          Timetable.remove i._id if i.classes[j].subject is @_id
-    Subjects.remove @_id
+      Timetable.remove i._id
+    Lecturers.remove @_id
+  "blur td": (e)->
+    cells = $(e.target).parent().find "td"
+    Lecturers.update({_id: @_id}, {$set:{Surname: cells[0].innerHTML, Name: cells[1].innerHTML, Patronymic: cells[2].innerHTML}})
+
 
 Template.subjectsTable.subjects = ->
   Subjects.find({}, sort:{Title:1})
 
+Template.subjectsTable.events
+  "click .btn-danger": ->
+    timetable = Timetable.find(subject: @_id).fetch()
+    for i in timetable
+      Timetable.remove i._id
+    Subjects.remove @_id
+  "blur td": (e)->
+    cells = $(e.target).parent().find "td"
+    Subjects.update({_id: @_id}, {$set:{Title: cells[0].innerHTML, Desciption: cells[1].innerHTML}})
+
+
 Template.classroomsTable.classrooms = ->
   Classrooms.find()
+
+Template.classroomsTable.events
+  "click .btn-danger": ->
+    timetable = Timetable.find(classRoom: @_id).fetch()
+    for i in timetable
+      Timetable.remove i._id
+    Classrooms.remove @_id
+  "blur td": (e)->
+    cells = $(e.target).parent().find "td"
+    Subjects.update({_id: @_id}, {$set:{Title: cells[0].innerHTML, Desciption: cells[1].innerHTML}})
