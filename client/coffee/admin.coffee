@@ -78,8 +78,11 @@ Template.lecturersTable.events
     for i in timetable
       Timetable.remove i._id
     Lecturers.remove @_id
-  "click btn-success": ->
-
+  "click .btn-success": ->
+    surname = $('input[name="lecturer_surname"]').val()
+    name = $('input[name="lecturer_name"]').val()
+    patronymic = $('input[name="lecturer_patronymic"]').val()
+    Lecturers.insert(Surname: surname, Name: name, Patronymic: patronymic)
   "blur td": (e)->
     cells = $(e.target).parent().find "td"
     Lecturers.update({_id: @_id}, {$set:{Surname: cells[0].innerHTML, Name: cells[1].innerHTML, Patronymic: cells[2].innerHTML}})
@@ -94,6 +97,10 @@ Template.subjectsTable.events
     for i in timetable
       Timetable.remove i._id
     Subjects.remove @_id
+  "click .btn-success": ->
+    title = $('input[name="subject_title"]').val()
+    discription = $('input[name="subject_discription"]').val()
+    Subjects.insert(Title: title, Discription: discription)
   "blur td": (e)->
     cells = $(e.target).parent().find "td"
     Subjects.update({_id: @_id}, {$set:{Title: cells[0].innerHTML, Desciption: cells[1].innerHTML}})
@@ -108,6 +115,11 @@ Template.classroomsTable.events
     for i in timetable
       Timetable.remove i._id
     Classrooms.remove @_id
+  "click .btn-success": ->
+    num = $('input[name="classroom_num"]').val()
+    roomines = $('input[name="classroom_roomines"]').val()
+    Classrooms.insert(num: num, roomines: roomines)
+
   "blur td": (e)->
     cells = $(e.target).parent().find "td"
     Subjects.update({_id: @_id}, {$set:{Title: cells[0].innerHTML, Desciption: cells[1].innerHTML}})
