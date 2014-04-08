@@ -44,6 +44,9 @@ Template.tablesContainer.display_classrooms = ->
 Template.tablesContainer.display_subjects = ->
   Session.equals "displayed_table", "subjects"
 
+Template.tablesContainer.display_timetable = ->
+  Session.equals "displayed_table", "timetable"
+
 Template.groupsTable.groups = ->
   Groups.find({}, {sort:{Title:1}})
 

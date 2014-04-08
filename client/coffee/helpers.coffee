@@ -51,10 +51,11 @@ Handlebars.registerHelper('hasBot', (key)->
 
 window.templateRender = (templateName)->
   $ ->
-    fragment = Meteor.render(->
-      Template[templateName]() # @ calls the template and returns the HTML.
-    )
-    $("body").html fragment
+    UI.insert(UI.render(Template[templateName]), document.body)
+    # fragment = Meteor.render(->
+    #   Template[templateName]() # @ calls the template and returns the HTML.
+    # )
+    # $("body").html fragment
 
 window.checkSessionArray = (array_name, item)->
   arr = Session.get array_name

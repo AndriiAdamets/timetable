@@ -28,6 +28,8 @@ window.display_for_groups = ->
           selector.type = l
           if Timetable.findOne selector
             table[i][j][k][l] = Timetable.findOne selector
+            table[i][j][k][l].subject = Subjects.findOne(_id: table[i][j][k][l].subject).Title
+
           else
             table[i][j][k][l] = {}
       if Session.equals "showEmptyClasses", false
@@ -71,6 +73,7 @@ window.display_for_lecturers = ->
           selector.type = l
           if Timetable.findOne selector
             table[i][j][k][l] = Timetable.findOne selector
+            table[i][j][k][l].subject = Subjects.findOne(_id: table[i][j][k][l].subject).Title
             table[i][j][k][l].groups = _.uniq(_(Timetable.find(selector).fetch()).pluck "group", false)
             table[i][j][k][l].groups = _.uniq(_(Groups.find(_id: {$in: table[i][j][k][l].groups}).fetch()).pluck "Title", false)
           else
@@ -115,6 +118,7 @@ window.display_for_classrooms = ->
           selector.type = l
           if Timetable.findOne selector
             table[i][j][k][l] = Timetable.findOne selector
+            table[i][j][k][l].subject = Subjects.findOne(_id: table[i][j][k][l].subject).Title
             table[i][j][k][l].groups = _.uniq(_(Timetable.find(selector).fetch()).pluck "group", false)
             table[i][j][k][l].groups = _.uniq(_(Groups.find(_id: {$in: table[i][j][k][l].groups}).fetch()).pluck "Title", false)
           else
