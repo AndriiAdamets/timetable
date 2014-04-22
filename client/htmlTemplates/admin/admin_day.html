@@ -1,0 +1,13 @@
+<template name="adminDayTimetable">
+  <tr>
+  <!-- Title of day of week -->
+    <td id="{{this.name}}" rowspan="{{doubleClassesCount}}">{{dayTitle}}</td>
+  </tr>
+      {{#each arrayify value}}
+        <tr>
+        <!-- num of class in day -->
+          <td rowspan="3">{{name}}</td>
+        </tr>
+        {{> adminClass}}
+      {{/each}}
+</template>

@@ -1,0 +1,20 @@
+<Template name="adminTimetable">
+  {{#if loading}}
+    <h3>Загрузка информации</h3>
+  {{else}}
+    <table class="table table-bordered">
+      <thead>
+        <td></td>
+        <td>№</td>
+          {{#each headCells}}
+          <td>{{this}}</td>
+          {{/each}}
+      </thead>
+      <tbody>
+        {{#each arrayify data}}
+          {{> adminDayTimetable}}
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
+</Template>

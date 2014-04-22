@@ -1,0 +1,61 @@
+<!-- two strings of lections -->
+<Template name="adminClass">
+<tr>
+  {{#each arrayify value}}
+    {{#if hasAll value}}
+      {{> adminAllCell}}
+      {{else}}
+        {{#if hasTop value}}
+          {{> adminTopCell}}
+        {{else}}
+          <td>—</td>
+        {{/if}}
+      {{/if}}
+  {{/each}}
+</tr>
+
+<tr>
+  {{#each arrayify value}}
+    {{#if hasntAll value}}
+      {{#if hasBot value}}
+        {{> adminBotCell}}
+      {{else}}
+        <td>—</td>
+      {{/if}}
+    {{/if}}
+  {{/each}}
+</tr>
+</Template>
+
+<Template name="adminAllCell">
+  <td rowspan="2">
+  <a type='button' class="btn btn-mini btn-danger killAll">
+  <i class="icon-trash"></i>
+  </a>
+    {{first}}
+    <br />
+    {{second}}
+    <br />
+    {{third}}
+  </td>
+</Template>
+
+<Template name="adminTopCell">
+  <td>
+    {{first}}
+    <br />
+    {{second}}
+    <br />
+    {{third}}
+  </td>
+</Template>
+
+<Template name="adminBotCell">
+  <td>
+    {{first}}
+    <br />
+    {{second}}
+    <br />
+    {{third}}
+  </td>
+</Template>
