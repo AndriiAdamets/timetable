@@ -133,17 +133,17 @@ window.display_for_classrooms = ->
   table
 
 window.display_for_admin = ->
-  active_groups = Session.get "admin_active_groups"
-  active_lecturers = Session.get "admin_active_lecturers"
-  active_classrooms = Session.get "admin_active_classrooms"
+  # active_groups = Session.get "admin_active_groups"
+  # active_lecturers = Session.get "admin_active_lecturers"
+  # active_classrooms = Session.get "admin_active_classrooms"
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
   table = {}
   class_selector = {}
-  if (active_classrooms and active_classrooms.length > 0)
-    class_selector._id = {$in: active_classrooms}
+  # if (active_classrooms and active_classrooms.length > 0)
+    # class_selector._id = {$in: active_classrooms}
   selector = {}
-  selector.group = {$in: active_groups} if (active_groups and active_groups.length > 0)
-  selector.lecturer = {$in: active_lecturers} if (active_lecturers and active_lecturers.length > 0)
+  # selector.group = {$in: active_groups} if (active_groups and active_groups.length > 0)
+  # selector.lecturer = {$in: active_lecturers} if (active_lecturers and active_lecturers.length > 0)
   # i: number of day
   # j: number of class
   # k: classroom
