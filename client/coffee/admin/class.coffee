@@ -8,10 +8,11 @@ Template.adminAllCell.third = ->
   @value.all.groups
 
 Template.adminAllCell.events
-  'click a.killAll': ->
-    console.log 'Object:', @
-    Meteor.call "removeLesson", @value.all.dayNo, @value.all.classNo, @value.all.type, @value.all.classroom
-
+  'click': (e) ->
+    if $(e.target).hasClass('killAll') or $(e.target).hasClass('icon-trash')
+      Meteor.call "removeLesson", @value.all.dayNo, @value.all.classNo, @value.all.type, @value.all.classroom
+    else
+      console.log 'Dick'      
 Template.adminTopCell.first = ->
   @value.top.subject
 
