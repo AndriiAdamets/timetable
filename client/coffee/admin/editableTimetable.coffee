@@ -1,3 +1,6 @@
+# Template.timetableEditable.rendered = ->
+#   templateRender 'editClassModal'
+
 Template.timetableEditable.data = ->
 	display_for_admin()
 

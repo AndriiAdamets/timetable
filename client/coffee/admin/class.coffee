@@ -12,8 +12,9 @@ Template.adminAllCell.events
     if $(e.target).hasClass('killAll') or $(e.target).hasClass('icon-trash')
       Meteor.call "removeLesson", @value.all.dayNo, @value.all.classNo, @value.all.type, @value.all.classroom
     else
+      console.log 'Object:', @
+      templateRender 'editClassModal'
       $('#eeditClassModal').modal 'show'
-      console.log 'Dick'
 Template.adminTopCell.first = ->
   @value.top.subject
 

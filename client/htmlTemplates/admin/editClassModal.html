@@ -1,15 +1,127 @@
 <Template name="editClassModal">
-<div id="eeditClassModal" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Modal header</h3>
+  <div id="eeditClassModal" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Modal header</h3>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label">
+            Группа
+          </label>
+          <div class="controls">
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Action
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingGroups}}
+                  <h3>Загрузка списка групп</h3>
+                {{else}}
+                  <div class="search-container">
+                      <input type="text" class="search-query form-control" placeholder="Группа">
+                      <i class="icon-search"></i>
+                  </div>
+                  <li class="groupNavItem {{active_all_groups}}">
+                    <a>
+                      Все
+                      <i class="icon-ok"></i>
+                    </a>
+                  </li>
+                  {{#each groups}}
+                  <li class="groupNavItem {{active_group}}">
+                    <a>
+                      {{Title}} {{Type}}
+                      <i class="icon-ok"></i>
+                    </a>
+                  </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">
+            Преподаватель
+          </label>
+          <div class="controls">
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Action
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingLecturers}}
+                  <h3>Загрузка преподавателей</h3>
+                {{else}}
+                <div class="search-container">
+                    <input type="text" class="search-query form-control" placeholder="Ф.И.О. преподавателя">
+                    <i class="icon-search"></i>
+                </div>
+                <li class="lecturerNavItem {{active_all_lecturers}}">
+                  <a>
+                    Все
+                    <i class="icon-ok"></i>
+                  </a>
+                </li>
+                  {{#each lecturers}}
+                    <li class="lecturerNavItem {{active_lecturer}}">
+                      <a>
+                        {{Surname}} {{Name}} {{Patronymic}}
+                        <i class="icon-ok"></i>
+                    </a>
+                    </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">
+            Преподаватель
+          </label>
+          <div class="controls">
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Action
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingLecturers}}
+                  <h3>Загрузка преподавателей</h3>
+                {{else}}
+                <div class="search-container">
+                    <input type="text" class="search-query form-control" placeholder="Ф.И.О. преподавателя">
+                    <i class="icon-search"></i>
+                </div>
+                <li class="lecturerNavItem {{active_all_lecturers}}">
+                  <a>
+                    Все
+                    <i class="icon-ok"></i>
+                  </a>
+                </li>
+                  {{#each lecturers}}
+                    <li class="lecturerNavItem {{active_lecturer}}">
+                      <a>
+                        {{Surname}} {{Name}} {{Patronymic}}
+                        <i class="icon-ok"></i>
+                    </a>
+                    </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a type='button' class="btn" data-dismiss='modal'>Close</a>
+      <a href="#" class="btn btn-primary">Save changes</a>
+    </div>
   </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
-  </div>
-</div>
 </Template>
