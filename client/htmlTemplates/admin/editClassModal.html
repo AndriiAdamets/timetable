@@ -11,36 +11,42 @@
             Группа
           </label>
           <div class="controls">
-            <div class="btn-group">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                Action
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                {{#if loadingGroups}}
-                  <h3>Загрузка списка групп</h3>
-                {{else}}
-                  <div class="search-container">
-                      <input type="text" class="search-query form-control" placeholder="Группа">
-                      <i class="icon-search"></i>
-                  </div>
-                  <li class="groupNavItem {{active_all_groups}}">
-                    <a>
-                      Все
-                      <i class="icon-ok"></i>
-                    </a>
-                  </li>
-                  {{#each groups}}
-                  <li class="groupNavItem {{active_group}}">
-                    <a>
-                      {{Title}} {{Type}}
-                      <i class="icon-ok"></i>
-                    </a>
-                  </li>
-                  {{/each}}
-                {{/if}}
-              </ul>
-            </div>
+            <select multiple="multiple">
+            <option>Dick</option>
+            <option>New</option>
+            <option>
+              <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  Action
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  {{#if loadingGroups}}
+                    <h3>Загрузка списка групп</h3>
+                  {{else}}
+                    <div class="search-container">
+                        <input type="text" class="search-query form-control" placeholder="Группа">
+                        <i class="icon-search"></i>
+                    </div>
+                    <li class="groupNavItem {{active_all_groups}}">
+                      <a>
+                        Все
+                        <i class="icon-ok"></i>
+                      </a>
+                    </li>
+                    {{#each groups}}
+                    <li class="groupNavItem {{active_group}}">
+                      <a>
+                        {{Title}} {{Type}}
+                        <i class="icon-ok"></i>
+                      </a>
+                    </li>
+                    {{/each}}
+                  {{/if}}
+                </ul>
+              </div>
+            </option>
+            </select>
           </div>
         </div>
         <div class="control-group">
