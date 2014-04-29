@@ -2,51 +2,45 @@
   <div id="editClassModal" class="modal hide fade">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3>Modal header</h3>
+      <h3>Изменить ячейку расписания</h3>
     </div>
     <div class="modal-body">
       <form class="form-horizontal">
+        <input type="hidden" name="day-no">
+        <input type="hidden" name="class-no" value="{{classNo}}">
         <div class="control-group">
           <label class="control-label">
             Группа
           </label>
           <div class="controls">
             <select multiple="multiple">
-            <option>Dick</option>
-            <option>New</option>
-            <option>
-              <div class="btn-group">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                  Action
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  {{#if loadingGroups}}
-                    <h3>Загрузка списка групп</h3>
-                  {{else}}
-                    <div class="search-container">
-                        <input type="text" class="search-query form-control" placeholder="Группа">
-                        <i class="icon-search"></i>
-                    </div>
-                    <li class="groupNavItem {{active_all_groups}}">
-                      <a>
-                        Все
-                        <i class="icon-ok"></i>
-                      </a>
-                    </li>
-                    {{#each groups}}
-                    <li class="groupNavItem {{active_group}}">
-                      <a>
-                        {{Title}} {{Type}}
-                        <i class="icon-ok"></i>
-                      </a>
-                    </li>
-                    {{/each}}
-                  {{/if}}
-                </ul>
-              </div>
-            </option>
+              <option>{{this}}</option>
+              <option>New</option>
             </select>
+            <div class="btn-group add-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Добавить группу
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingGroups}}
+                  <h3>Загрузка списка групп</h3>
+                {{else}}
+                  <div class="search-container">
+                      <input type="text" class="search-query form-control" placeholder="Группа">
+                      <i class="icon-search"></i>
+                  </div>
+                  {{#each groups}}
+                  <li class="groupNavItem {{active_group}}">
+                    <a>
+                      {{Title}} {{Type}}
+                      <i class="icon-ok"></i>
+                    </a>
+                  </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </div>
           </div>
         </div>
         <div class="control-group">
@@ -56,7 +50,7 @@
           <div class="controls">
             <div class="btn-group">
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                Action
+                {{currentLecturer.Surname}}
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
@@ -67,12 +61,6 @@
                     <input type="text" class="search-query form-control" placeholder="Ф.И.О. преподавателя">
                     <i class="icon-search"></i>
                 </div>
-                <li class="lecturerNavItem {{active_all_lecturers}}">
-                  <a>
-                    Все
-                    <i class="icon-ok"></i>
-                  </a>
-                </li>
                   {{#each lecturers}}
                     <li class="lecturerNavItem {{active_lecturer}}">
                       <a>
@@ -88,7 +76,7 @@
         </div>
         <div class="control-group">
           <label class="control-label">
-            Преподаватель
+            Аудитории
           </label>
           <div class="controls">
             <div class="btn-group">
@@ -97,30 +85,51 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                {{#if loadingLecturers}}
-                  <h3>Загрузка преподавателей</h3>
+                {{#if loadingClassrooms}}
+                  <h3>Загрузка списка Аудиторий</h3>
                 {{else}}
-                <div class="search-container">
-                    <input type="text" class="search-query form-control" placeholder="Ф.И.О. преподавателя">
-                    <i class="icon-search"></i>
-                </div>
-                <li class="lecturerNavItem {{active_all_lecturers}}">
-                  <a>
-                    Все
-                    <i class="icon-ok"></i>
-                  </a>
-                </li>
-                  {{#each lecturers}}
-                    <li class="lecturerNavItem {{active_lecturer}}">
-                      <a>
-                        {{Surname}} {{Name}} {{Patronymic}}
-                        <i class="icon-ok"></i>
+                  <div class="search-container">
+                      <input type="text" class="search-query form-control" placeholder="Номер аудитории">
+                      <i class="icon-search"></i>
+                  </div>
+
+                  {{#each classrooms}}
+                  <li class="classroomNavItem {{active_classroom}}">
+                    <a>
+                      {{num}}
+                      <i class="icon-ok"></i>
                     </a>
-                    </li>
+                  </li>
                   {{/each}}
                 {{/if}}
               </ul>
             </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="row-fluid">
+            <center>Неделя</center>
+          </div>
+          <div class="row-fluid">
+            <div class="span4">
+              <label class="radio inline control-label">
+                <input type="radio" name="paymentType">
+                Верхняя
+              </label>
+            </div>
+            <div class="span4">
+              <label class="radio inline control-label">
+                <input type="radio" name="paymentType">
+                Нижняя
+              </label>
+            </div>
+            <div class="span4">
+              <label class="radio inline control-label">
+                <input type="radio" name="paymentType">
+                Обе
+              </label>
+            </div>
+
           </div>
         </div>
       </form>
