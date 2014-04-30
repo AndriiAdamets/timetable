@@ -15,8 +15,6 @@ Template.editClassModal.rendered = ->
   for i in rads
     if Session.equals 'edit_modal/selected_type',$(i).val()
       $(i).prop('checked', true)
-  console.log 'batman'
-  # groups = Timetable.find({})
 
 
 Template.editClassModal.classNo = ->
@@ -42,9 +40,6 @@ Template.editClassModal.groups =->
   groups = _.uniq(_(Timetable.find(selector).fetch()).pluck "group", false)
   Groups.find(groups)
 
-# Template.editClassModal.lecturer = ->
-#   Lecturers.find (Session.get.('edit_modal/class').lecturer)
-
 Template.editClassModal.days = ->
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
 
@@ -62,7 +57,7 @@ Template.editClassModal.loadingClassrooms =->
 
 Template.editClassModal.currentGroups = ->
   cur_groups = Session.get('edit_modal/selected_groups')
-  return cur_groups if cur_groups.length is 0
+  cur_groups = [] if (typeof(cur_groups) is 'undefined')
   selector = {}
   selector._id = {$in: cur_groups} if (cur_groups and cur_groups.length > 0)
   cur_groups = Groups.find(selector)
@@ -87,18 +82,15 @@ Template.editClassModal.lecturers = ->
 
 Template.editClassModal.classrooms = ->
   Classrooms.find()
-
-Template.editClassModal.active_group = ->
-  active_groups = Session.get "edit_modal/selected_groups"
-  if active_groups isnt undefined and active_groups.indexOf(@_id) > -1 then "checked" else ""
+  # if active_groups isnt undefined and active_groups.indexOf(@_id) > -1 then "checked" else ""
 
 Template.editClassModal.active_lecturer = ->
   active_lecturer = Session.get "edit_modal/selected_lecturer"
-  if active_lecturer isnt undefined and active_lecturer.indexOf(@_id) > -1 then "checked" else ""
+  # if active_lecturer isnt undefined and active_lecturer.indexOf(@_id) > -1 then "checked" else ""
 
 Template.editClassModal.active_classroom = ->
   active_classroom = Session.get 'edit_modal/selected_classroom'
-  if active_classroom isnt undefined and active_classroom.indexOf(@_id) > -1 then "checked" else ""
+  # if active_classroom isnt undefined and active_classroom.indexOf(@_id) > -1 then "checked" else ""
 
 Template.editClassModal.active_type = ->
   active_type = Session.get 'edit_modal/selected_type'
@@ -110,10 +102,33 @@ Template.editClassModal.events
       $(i).prop 'checked', false
     $(e.target).prop 'checked', true
     Session.set 'edit_modal/selected_type', $(e.target).val()
-    console.log Session.get('edit_modal/selected_type')
 
   'dblclick select option' : ->
     groups = Session.get 'edit_modal/selected_groups'
     groups.splice groups.indexOf(@_id), 1
-    console.log groups
     Session.set 'edit_modal/selected_groups', groups
+
+  'click .dropdown-menu input': ->
+    false
+
+  'click .lecturerNavItem': ->
+    Session.set 'edit_modal/selected_lecturer', @_id
+
+  'click .classroomNavItem': ->
+    Session.set 'edit_modal/selected_classroom', @_id
+
+  'click .groupNavItem' : ->
+    groups = Session.get 'edit_modal/selected_groups'
+    groups.push @_id
+    Session.set 'edit_modal/selected_groups', groups
+
+  'keyup .dropdown-menu input':(e) ->
+    search_val = ' '+$(e.target).val()
+    search_val = search_val.toLowerCase()
+    items = $(e.target).parent().parent().find('li')
+    for i in items
+      cur_text = ' '+$(i).find('a').text().toLowerCase().trim()
+      if cur_text.indexOf(search_val) >= 0
+        $(i).show()
+      else
+        $(i).hide()
