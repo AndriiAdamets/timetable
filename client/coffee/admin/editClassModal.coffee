@@ -15,6 +15,7 @@ Template.editClassModal.rendered = ->
   for i in rads
     if Session.equals 'edit_modal/selected_type',$(i).val()
       $(i).prop('checked', true)
+  console.log 'batman'
   # groups = Timetable.find({})
 
 
@@ -61,6 +62,7 @@ Template.editClassModal.loadingClassrooms =->
 
 Template.editClassModal.currentGroups = ->
   cur_groups = Session.get('edit_modal/selected_groups')
+  return cur_groups if cur_groups.length is 0
   selector = {}
   selector._id = {$in: cur_groups} if (cur_groups and cur_groups.length > 0)
   cur_groups = Groups.find(selector)
@@ -109,3 +111,9 @@ Template.editClassModal.events
     $(e.target).prop 'checked', true
     Session.set 'edit_modal/selected_type', $(e.target).val()
     console.log Session.get('edit_modal/selected_type')
+
+  'dblclick select option' : ->
+    groups = Session.get 'edit_modal/selected_groups'
+    groups.splice groups.indexOf(@_id), 1
+    console.log groups
+    Session.set 'edit_modal/selected_groups', groups
