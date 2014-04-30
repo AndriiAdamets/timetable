@@ -14,8 +14,9 @@
           </label>
           <div class="controls">
             <select multiple="multiple">
-              <option>{{this}}</option>
-              <option>New</option>
+              {{#each currentGroups}}
+                <option>{{Title}} {{Type}} {{Year}}</option>
+              {{/each}}
             </select>
             <div class="btn-group add-group">
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -34,7 +35,7 @@
                   <li class="groupNavItem {{active_group}}">
                     <a>
                       {{Title}} {{Type}}
-                      <i class="icon-ok"></i>
+
                     </a>
                   </li>
                   {{/each}}
@@ -65,7 +66,6 @@
                     <li class="lecturerNavItem {{active_lecturer}}">
                       <a>
                         {{Surname}} {{Name}} {{Patronymic}}
-                        <i class="icon-ok"></i>
                     </a>
                     </li>
                   {{/each}}
@@ -81,7 +81,7 @@
           <div class="controls">
             <div class="btn-group">
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                Action
+                {{currentClassroom.num}}
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
@@ -97,7 +97,7 @@
                   <li class="classroomNavItem {{active_classroom}}">
                     <a>
                       {{num}}
-                      <i class="icon-ok"></i>
+
                     </a>
                   </li>
                   {{/each}}
@@ -112,24 +112,23 @@
           </div>
           <div class="row-fluid">
             <div class="span4">
-              <label class="radio inline control-label">
-                <input type="radio" name="paymentType">
+              <label class="radio inline control-label" {{active_type}}>
+                <input type="radio" name="paymentType" value="top">
                 Верхняя
               </label>
             </div>
             <div class="span4">
               <label class="radio inline control-label">
-                <input type="radio" name="paymentType">
+                <input type="radio" name="paymentType" value="bot" {{active_type}}>
                 Нижняя
               </label>
             </div>
             <div class="span4">
               <label class="radio inline control-label">
-                <input type="radio" name="paymentType">
+                <input type="radio" name="paymentType" value="all" {{active_type}}>
                 Обе
               </label>
             </div>
-
           </div>
         </div>
       </form>

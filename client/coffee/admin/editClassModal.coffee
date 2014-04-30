@@ -1,8 +1,21 @@
 Template.editClassModal.rendered = ->
   data = Session.get 'edit_modal/class'
+  groups = {}
+  groups.classNo = data.classNo
+  groups.dayNo = data.dayNo
+  groups.type = data.type
+  groups.classRoom = data.classRoom
+  groups = _.uniq(_(Timetable.find(groups).fetch()).pluck "group", false)
+  Session.set 'edit_modal/selected_groups', groups
   Session.set 'edit_modal/selected_lecturer', data.lecturer
   Session.set 'edit_modal/selected_subject', data.subject
-  Session.set 'edit_modal/selected_classroom', data.classroom
+  Session.set 'edit_modal/selected_classroom', data.classRoom
+  Session.set 'edit_modal/selected_type', data.type
+  rads = $('input[type="radio"')
+  for i in rads
+    if Session.equals 'edit_modal/selected_type',$(i).val()
+      $(i).prop('checked', true)
+  # groups = Timetable.find({})
 
 
 Template.editClassModal.classNo = ->
@@ -46,16 +59,23 @@ Template.editClassModal.loadngLecturers = ->
 Template.editClassModal.loadingClassrooms =->
   ClassroomsHandle and not ClassroomsHandle.ready()
 
+Template.editClassModal.currentGroups = ->
+  cur_groups = Session.get('edit_modal/selected_groups')
+  selector = {}
+  selector._id = {$in: cur_groups} if (cur_groups and cur_groups.length > 0)
+  cur_groups = Groups.find(selector)
+
 Template.editClassModal.currentLecturer = ->
-  lect = Lecturers.findOne(Session.get 'edit_modal/selected_lecturer')
-  console.log lect
-  lect
+  Lecturers.findOne(Session.get 'edit_modal/selected_lecturer')
 
 Template.editClassModal.currentSubject = ->
   Lecturers.findOne(Session.get 'edit_modal/selected_subject')
 
 Template.editClassModal.currentClassroom = ->
-  Lecturers.findOne(Session.get 'edit_modal/selected_classroom')
+  Classrooms.findOne(Session.get 'edit_modal/selected_classroom')
+
+Template.editClassModal.current_type = ->
+  Session.get 'edit_modal/selected_type'
 
 Template.editClassModal.groups = ->
   Groups.find()
@@ -67,13 +87,25 @@ Template.editClassModal.classrooms = ->
   Classrooms.find()
 
 Template.editClassModal.active_group = ->
-  active_groups = Session.get "active_groups"
+  active_groups = Session.get "edit_modal/selected_groups"
   if active_groups isnt undefined and active_groups.indexOf(@_id) > -1 then "checked" else ""
 
 Template.editClassModal.active_lecturer = ->
-  active_lecturers = Session.get "active_lecturers"
-  if active_lecturers isnt undefined and active_lecturers.indexOf(@_id) > -1 then "checked" else ""
+  active_lecturer = Session.get "edit_modal/selected_lecturer"
+  if active_lecturer isnt undefined and active_lecturer.indexOf(@_id) > -1 then "checked" else ""
 
 Template.editClassModal.active_classroom = ->
-  active_classrooms = Session.get "active_classrooms"
-  if active_classrooms isnt undefined and active_classrooms.indexOf(@_id) > -1 then "checked" else ""
+  active_classroom = Session.get 'edit_modal/selected_classroom'
+  if active_classroom isnt undefined and active_classroom.indexOf(@_id) > -1 then "checked" else ""
+
+Template.editClassModal.active_type = ->
+  active_type = Session.get 'edit_modal/selected_type'
+
+Template.editClassModal.events
+  'click input[type="radio"]' : (e) ->
+    rads = $('input[type="radio"')
+    for i in rads
+      $(i).prop 'checked', false
+    $(e.target).prop 'checked', true
+    Session.set 'edit_modal/selected_type', $(e.target).val()
+    console.log Session.get('edit_modal/selected_type')
