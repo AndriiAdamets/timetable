@@ -29,9 +29,11 @@
 
 <Template name="adminAllCell">
   <td rowspan="2">
-  <a type='button' class="btn btn-mini btn-danger killAll">
-  <i class="icon-trash"></i>
-  </a>
+    {{#if isntEmpty}}
+      <a type='button' class="btn btn-mini btn-danger killAll">
+        <i class="icon-trash"></i>
+      </a>
+    {{/if}}
     {{first}}
     <br />
     {{second}}
@@ -42,6 +44,11 @@
 
 <Template name="adminTopCell">
   <td>
+    {{#if isntEmpty}}
+      <a type='button' class="btn btn-mini btn-danger killAll">
+        <i class="icon-trash"></i>
+      </a>
+    {{/if}}
     {{first}}
     <br />
     {{second}}
@@ -52,6 +59,11 @@
 
 <Template name="adminBotCell">
   <td>
+    {{#if isntEmpty}}
+      <a type='button' class="btn btn-mini btn-danger killAll">
+        <i class="icon-trash"></i>
+      </a>
+    {{/if}}
     {{first}}
     <br />
     {{second}}

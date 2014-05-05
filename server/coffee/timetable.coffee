@@ -630,10 +630,5 @@ Meteor.publish "timetable", ->
     Timetable.find()
 
 Meteor.methods
-  removeLesson: (dayNo, classNo, type, classroom) ->
-    selector = {}
-    selector.dayNo = dayNo
-    selector.classNo = classNo
-    selector.type = type
-    selector.classroom = classroom
+  removeLesson: (selector) ->
     Timetable.remove selector

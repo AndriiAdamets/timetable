@@ -11,6 +11,7 @@ Template.editClassModal.rendered = ->
   Session.set 'edit_modal/selected_subject', data.subject
   Session.set 'edit_modal/selected_classroom', data.classRoom
   Session.set 'edit_modal/selected_type', data.type
+  Session.set 'edit_modal/selected_subject', data.subject
   rads = $('input[type="radio"')
   for i in rads
     if Session.equals 'edit_modal/selected_type',$(i).val()
@@ -20,7 +21,7 @@ Template.editClassModal.rendered = ->
 Template.editClassModal.classNo = ->
   Session.get('edit_modal/class').classNo
 
-Template.editClassModal.classNo = ->
+Template.editClassModal.dayNo = ->
   Session.get('edit_modal/class').dayNo
 
 Template.editClassModal.subject = ->
@@ -40,6 +41,9 @@ Template.editClassModal.groups =->
   groups = _.uniq(_(Timetable.find(selector).fetch()).pluck "group", false)
   Groups.find(groups)
 
+Template.editClassModal.subjects = ->
+  Subjects.find()
+
 Template.editClassModal.days = ->
   dayNums = _.uniq(_(Timetable.find().fetch()).pluck "dayNo", false)
 
@@ -48,6 +52,9 @@ Template.editClassModal.loadingDays = ->
 
 Template.editClassModal.loadingGroups = ->
   GroupsHandle and not GroupsHandle.ready()
+
+Template.editClassModal.loadingSubjects = ->
+  SubjectsHandle and not SubjectsHandle.ready()
 
 Template.editClassModal.loadngLecturers = ->
   LecturersHandle and not LecturersHandle.ready()
@@ -66,7 +73,7 @@ Template.editClassModal.currentLecturer = ->
   Lecturers.findOne(Session.get 'edit_modal/selected_lecturer')
 
 Template.editClassModal.currentSubject = ->
-  Lecturers.findOne(Session.get 'edit_modal/selected_subject')
+  Subjects.findOne(Session.get 'edit_modal/selected_subject')
 
 Template.editClassModal.currentClassroom = ->
   Classrooms.findOne(Session.get 'edit_modal/selected_classroom')
@@ -85,8 +92,10 @@ Template.editClassModal.classrooms = ->
   # if active_groups isnt undefined and active_groups.indexOf(@_id) > -1 then "checked" else ""
 
 Template.editClassModal.active_lecturer = ->
-  active_lecturer = Session.get "edit_modal/selected_lecturer"
+  Session.get "edit_modal/selected_lecturer"
   # if active_lecturer isnt undefined and active_lecturer.indexOf(@_id) > -1 then "checked" else ""
+Template.editClassModal.active_subject = ->
+  Session.get 'edit_modal/selected_subject'
 
 Template.editClassModal.active_classroom = ->
   active_classroom = Session.get 'edit_modal/selected_classroom'
@@ -114,6 +123,9 @@ Template.editClassModal.events
   'click .lecturerNavItem': ->
     Session.set 'edit_modal/selected_lecturer', @_id
 
+  'click .subjectNavItem': ->
+    Session.set 'edit_modal/selected_subject', @_id
+
   'click .classroomNavItem': ->
     Session.set 'edit_modal/selected_classroom', @_id
 
@@ -132,3 +144,23 @@ Template.editClassModal.events
         $(i).show()
       else
         $(i).hide()
+
+  'click .btn-primary': ->
+    selector = {}
+    oldClass = Session.get 'edit_modal/class'
+    selector.dayNo = oldClass.dayNo
+    selector.classNo = oldClass.classNo
+    selector.classRoom = Session.get 'edit_modal/selected_classroom'
+    type = Session.get 'edit_modal/selected_type'
+    if type isnt 'all' and oldClass.type isnt 'all'
+      selector.type =type
+    Meteor.call 'removeLesson', selector
+    selector.type = type
+    selector.lecturer = Session.get 'edit_modal/selected_lecturer'
+    selector.subject = Session.get 'edit_modal/selected_subject'
+    groups = Session.get 'edit_modal/selected_groups'
+    for i in groups
+      console.log selector.type
+      selector.group = i
+      Timetable.insert selector
+    $('#editClassModal').modal 'hide'

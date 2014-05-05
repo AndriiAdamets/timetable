@@ -163,7 +163,7 @@ window.display_for_admin = ->
           selector.type = l
           if Timetable.findOne selector
             table[i][j][k][l] = Timetable.findOne selector
-            table[i][j][k][l].subject = Subjects.findOne(_id: table[i][j][k][l].subject)
+            # table[i][j][k][l].subject = Subjects.findOne(_id: table[i][j][k][l].subject)
             table[i][j][k][l].groups = _.uniq(_(Timetable.find(selector).fetch()).pluck "group", false)
             table[i][j][k][l].groups = _.uniq(_(Groups.find(_id: {$in: table[i][j][k][l].groups}).fetch()).pluck "Title", false)
           else

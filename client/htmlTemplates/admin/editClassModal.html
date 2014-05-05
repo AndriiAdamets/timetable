@@ -35,7 +35,6 @@
                   <li class="groupNavItem {{active_group}}">
                     <a>
                       {{Title}} {{Type}}
-
                     </a>
                   </li>
                   {{/each}}
@@ -44,6 +43,37 @@
             </div>
           </div>
         </div>
+        <div class="control-group">
+          <label class="control-label">
+            Предмет
+          </label>
+          <div class="controls">
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                {{currentSubject.Title}}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingSubjects}}
+                  <h3>Загрузка предметов</h3>
+                {{else}}
+                <div class="search-container">
+                    <input type="text" class="search-query form-control" placeholder="Название предмета">
+                    <i class="icon-search"></i>
+                </div>
+                  {{#each subjects}}
+                    <li class="subjectNavItem {{active_subject}}">
+                      <a>
+                        {{Title}}
+                    </a>
+                    </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <div class="control-group">
           <label class="control-label">
             Преподаватель
@@ -68,37 +98,6 @@
                         {{Surname}} {{Name}} {{Patronymic}}
                     </a>
                     </li>
-                  {{/each}}
-                {{/if}}
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">
-            Аудитории
-          </label>
-          <div class="controls">
-            <div class="btn-group">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                {{currentClassroom.num}}
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                {{#if loadingClassrooms}}
-                  <h3>Загрузка списка Аудиторий</h3>
-                {{else}}
-                  <div class="search-container">
-                      <input type="text" class="search-query form-control" placeholder="Номер аудитории">
-                      <i class="icon-search"></i>
-                  </div>
-                  {{#each classrooms}}
-                  <li class="classroomNavItem {{active_classroom}}">
-                    <a>
-                      {{num}}
-
-                    </a>
-                  </li>
                   {{/each}}
                 {{/if}}
               </ul>
@@ -133,8 +132,8 @@
       </form>
     </div>
     <div class="modal-footer">
-      <a type='button' class="btn" data-dismiss='modal'>Close</a>
-      <a href="#" class="btn btn-primary">Save changes</a>
+      <a type='button' class="btn" data-dismiss='modal'>Закрыть</a>
+      <a type='button' class="btn btn-primary">Сохранить изменения</a>
     </div>
   </div>
 </Template>
