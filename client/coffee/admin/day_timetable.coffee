@@ -35,3 +35,4 @@ Template.adminDayTimetable.classesCount = ->
 
 Template.adminDayTimetable.doubleClassesCount = ->
   (_.keys(@.value).length)*3+1
+

@@ -1,6 +1,6 @@
 Template.allCell.first = ->
-  # Subjects.findOne(_id: @value.all.subject).Title
-  @value.all.subject
+  Subjects.findOne(_id: @value.all.subject).Title
+  # @value.all.subject
 
 Template.allCell.second = ->
   if Session.equals "displayed_for", "lecturers"
@@ -13,10 +13,10 @@ Template.allCell.third = ->
     @value.all.groups
   else
     Classrooms.findOne(_id: @value.all.classRoom).num
-  
+
 Template.topCell.first = ->
-  # Subjects.findOne(_id: @value.top.subject).Title
-  @value.top.subject
+  Subjects.findOne(@value.top.subject).Title
+  # @value.top.subject
 
 Template.topCell.second = ->
   if Session.equals "displayed_for", "lecturers"
@@ -31,8 +31,9 @@ Template.topCell.third = ->
     Classrooms.findOne(_id: @value.top.classRoom).num
 
 Template.botCell.first = ->
+  Subjects.findOne(@value.bot.subject).Title
   # Subjects.findOne(_id: @value.bot.subject).Title
-  @value.bot.subject
+  # @value.bot.subject
 
 Template.botCell.second = ->
   if Session.equals "displayed_for", "lecturers"

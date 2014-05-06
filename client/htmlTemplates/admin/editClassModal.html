@@ -6,8 +6,7 @@
     </div>
     <div class="modal-body">
       <form class="form-horizontal">
-        <input type="hidden" name="day-no">
-        <input type="hidden" name="class-no" value="{{classNo}}">
+
         <div class="control-group">
           <label class="control-label">
             Группа
@@ -104,6 +103,38 @@
             </div>
           </div>
         </div>
+        {{#if classroomUndefined}}
+        <div class="control-group">
+          <label class="control-label">
+            Аудитория
+          </label>
+          <div class="controls">
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                {{currentClassroom.num}}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {{#if loadingClassrooms}}
+                  <h3>Загрузка аудиторий</h3>
+                {{else}}
+                <div class="search-container">
+                    <input type="text" class="search-query form-control" placeholder="Номер аудитории">
+                    <i class="icon-search"></i>
+                </div>
+                  {{#each classrooms}}
+                    <li class="classroomNavItem {{active_classroom}}">
+                      <a>
+                        {{num}}
+                    </a>
+                    </li>
+                  {{/each}}
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {{/if}}
         <div class="control-group">
           <div class="row-fluid">
             <center>Неделя</center>

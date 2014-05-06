@@ -15,7 +15,6 @@ Template.adminAllCell.events
       selector.classNo = @value.all.classNo
       selector.type = @value.all.type
       selector.classRoom = @value.all.classRoom
-      console.log 'Selector', selector
       Meteor.call 'removeLesson', selector
     else
       Session.set 'edit_modal/class', @value.all
@@ -66,10 +65,10 @@ Template.adminBotCell.events
   'click': (e) ->
     if $(e.target).hasClass('killAll') or $(e.target).hasClass('icon-trash')
       selector = {}
-      selector.dayNo = @value.bot.dayNo
-      selector.classNo = @value.bot.classNo
+      # selector.dayNo = @value.bot.dayNo
+      # selector.classNo = @value.bot.classNo
       selector.type = @value.bot.type
-      selector.classRoom = @value.bot.classRoom
+      # selector.classRoom = @value.bot.classRoom
       console.log 'Selector', selector
       Meteor.call 'removeLesson', selector
     else
@@ -79,3 +78,17 @@ Template.adminBotCell.events
 
 Template.adminBotCell.isntEmpty = ->
   typeof(@value.bot._id) isnt undefined
+
+Template.adminTopEmptyCell.events
+  'click': (e) ->
+    console.log @parent
+    Session.set 'edit_modal/selected_type', 'top'
+
+Template.adminClass.events
+  'click': ->
+    Session.set 'edit_modal/selected_dayNo', @value.dayNo
+    Session.set 'edit_modal/selected_classNo', @value.classNo
+    Session.set 'edit_modal/selected_classroom', @value.classRoom
+    console.log 'ClassNo:', Session.get 'edit_modal/selected_classNo'
+    templateRender 'editClassModal'
+    $('#editClassModal').modal 'show'

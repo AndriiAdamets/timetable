@@ -155,10 +155,15 @@ window.display_for_admin = ->
     for j in classNums
       selector.classNo = j
       table[i][j] = {}
+      # table[i][j].dayNo = i
+      # yable[i][j].classNo = j
       classes = _.uniq(_(Classrooms.find(class_selector, {sort:{num:1}}).fetch()).pluck "_id", false)
       for k in classes
         selector.classRoom = k
         table[i][j][k] = {}
+        table[i][j][k].dayNo = i
+        # table[i][j][k].ClassNo = j
+        # table[i][j][k].classRoom = k
         for l in ['all', 'top', 'bot']
           selector.type = l
           if Timetable.findOne selector

@@ -1,15 +1,15 @@
 Template.editClassModal.rendered = ->
   data = Session.get 'edit_modal/class'
   groups = {}
-  groups.classNo = data.classNo
-  groups.dayNo = data.dayNo
+  groups.classNo = Session.get 'edit_modal/selected_classNo'
+  groups.dayNo = Session.get 'edit_modal/selected_dayNo'
   groups.type = data.type
-  groups.classRoom = data.classRoom
+  groups.classRoom = Session.get 'selected_classroom'
   groups = _.uniq(_(Timetable.find(groups).fetch()).pluck "group", false)
   Session.set 'edit_modal/selected_groups', groups
   Session.set 'edit_modal/selected_lecturer', data.lecturer
   Session.set 'edit_modal/selected_subject', data.subject
-  Session.set 'edit_modal/selected_classroom', data.classRoom
+  # Session.set 'edit_modal/selected_classroom', data.classRoom
   Session.set 'edit_modal/selected_type', data.type
   Session.set 'edit_modal/selected_subject', data.subject
   rads = $('input[type="radio"')
@@ -25,19 +25,19 @@ Template.editClassModal.dayNo = ->
   Session.get('edit_modal/class').dayNo
 
 Template.editClassModal.subject = ->
-  data = Session.get 'edit_modal/class'
+  # data = Session.get 'edit_modal/class'
   selector = {}
-  selector.dayNo = data.dayNo
-  selector.classNo = data.classNo
-  selector.classroom = data.classroom
+  selector.dayNo = Session.get 'edit_modal/selected_dayNo'
+  selector.classNo = Session.get 'edit_modal/selected_classNo'
+  selector.classroom = Session.get 'edit_modal/selected_classroom'
   Timetable.findOne(selector).subject
 
 Template.editClassModal.groups =->
+  # data = Session.get 'edit_modal/class'
   selector = {}
-  data = Session.get 'edit_modal/class'
-  selector.dayNo = data.dayNo
-  selector.classNo = data.classNo
-  selector.classroom = data.classroom
+  selector.dayNo = Session.get 'edit_modal/selected_dayNo'
+  selector.classNo = Session.get 'edit_modal/selected_classNo'
+  selector.classroom = Session.get 'edit_modal/selected_classroom'
   groups = _.uniq(_(Timetable.find(selector).fetch()).pluck "group", false)
   Groups.find(groups)
 
@@ -131,6 +131,7 @@ Template.editClassModal.events
 
   'click .groupNavItem' : ->
     groups = Session.get 'edit_modal/selected_groups'
+    groups = [] if typeof(groups) is 'undefined'
     groups.push @_id
     Session.set 'edit_modal/selected_groups', groups
 
@@ -148,8 +149,8 @@ Template.editClassModal.events
   'click .btn-primary': ->
     selector = {}
     oldClass = Session.get 'edit_modal/class'
-    selector.dayNo = oldClass.dayNo
-    selector.classNo = oldClass.classNo
+    selector.dayNo = Session.get 'edit_modal/selected_dayNo'
+    selector.classNo = Session.get 'edit_modal/selected_classNo'
     selector.classRoom = Session.get 'edit_modal/selected_classroom'
     type = Session.get 'edit_modal/selected_type'
     if type isnt 'all' and oldClass.type isnt 'all'
@@ -164,3 +165,6 @@ Template.editClassModal.events
       selector.group = i
       Timetable.insert selector
     $('#editClassModal').modal 'hide'
+
+Template.editClassModal.classroomUndefined = ->
+  Session.get 'undefinedClassroom'
