@@ -1,5 +1,10 @@
 Template.editClassModal.rendered = ->
   data = Session.get 'edit_modal/class'
+  unless data
+    data = {}
+    data.lecturer = ''
+    data.subject = ''
+    data.type = 'all'
   groups = {}
   groups.classNo = Session.get 'edit_modal/selected_classNo'
   groups.dayNo = Session.get 'edit_modal/selected_dayNo'
@@ -153,7 +158,7 @@ Template.editClassModal.events
     selector.classNo = Session.get 'edit_modal/selected_classNo'
     selector.classRoom = Session.get 'edit_modal/selected_classroom'
     type = Session.get 'edit_modal/selected_type'
-    if type isnt 'all' and oldClass.type isnt 'all'
+    if type isnt 'all' and ((typeof oldClass isnt 'undefined') and oldClass.type isnt 'all')
       selector.type =type
     Meteor.call 'removeLesson', selector
     selector.type = type

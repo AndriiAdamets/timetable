@@ -86,6 +86,7 @@ Template.adminTopEmptyCell.events
 
 Template.adminClass.events
   'click': ->
+    console.log 'val:', @value
     Session.set 'edit_modal/selected_dayNo', @value.dayNo
     Session.set 'edit_modal/selected_classNo', @value.classNo
     Session.set 'edit_modal/selected_classroom', @value.classRoom

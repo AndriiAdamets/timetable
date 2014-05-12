@@ -28,7 +28,6 @@ window.display_for_groups = ->
           selector.type = l
           if Timetable.findOne selector
             table[i][j][k][l] = Timetable.findOne selector
-            table[i][j][k][l].subject = Subjects.findOne(_id: table[i][j][k][l].subject)
 
           else
             table[i][j][k][l] = {}
@@ -162,8 +161,8 @@ window.display_for_admin = ->
         selector.classRoom = k
         table[i][j][k] = {}
         table[i][j][k].dayNo = i
-        # table[i][j][k].ClassNo = j
-        # table[i][j][k].classRoom = k
+        table[i][j][k].classNo = j
+        table[i][j][k].classRoom = k
         for l in ['all', 'top', 'bot']
           selector.type = l
           if Timetable.findOne selector
