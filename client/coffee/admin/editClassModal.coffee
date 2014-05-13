@@ -69,10 +69,12 @@ Template.editClassModal.loadingClassrooms =->
 
 Template.editClassModal.currentGroups = ->
   cur_groups = Session.get('edit_modal/selected_groups')
+  console.log cur_groups.length
   cur_groups = [] if (typeof(cur_groups) is 'undefined')
   selector = {}
   selector._id = {$in: cur_groups} if (cur_groups and cur_groups.length > 0)
-  cur_groups = Groups.find(selector)
+  cur_groups = Groups.find(selector) if cur_groups.length > 0
+  cur_groups
 
 Template.editClassModal.currentLecturer = ->
   Lecturers.findOne(Session.get 'edit_modal/selected_lecturer')

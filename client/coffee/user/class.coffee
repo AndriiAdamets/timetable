@@ -6,12 +6,14 @@ Template.allCell.second = ->
   if Session.equals "displayed_for", "lecturers"
     @value.all.groups
   else
+    # @value.all.lecturer
     Lecturers.findOne(_id: @value.all.lecturer).Surname
 
 Template.allCell.third = ->
   if Session.equals "displayed_for", "classrooms"
     @value.all.groups
   else
+    # @value.all.classRoom
     Classrooms.findOne(_id: @value.all.classRoom).num
 
 Template.topCell.first = ->
@@ -22,12 +24,14 @@ Template.topCell.second = ->
   if Session.equals "displayed_for", "lecturers"
     @value.top.grous
   else
+    # @value.top.lecturer
     Lecturers.findOne(_id: @value.top.lecturer).Surname
 
 Template.topCell.third = ->
   if Session.equals "displayed_for", "classrooms"
     @value.top.groups
   else
+    # @value.top.classRoom
     Classrooms.findOne(_id: @value.top.classRoom).num
 
 Template.botCell.first = ->
@@ -39,10 +43,12 @@ Template.botCell.second = ->
   if Session.equals "displayed_for", "lecturers"
     @value.bot.groups
   else
+    # @value.bot.lecturer
     Lecturers.findOne(_id: @value.bot.lecturer).Surname
 
 Template.botCell.third = ->
   if Session.equals "displayed_for", "classrooms"
     @value.bot.groups
   else
+    # @value.bot.classRoom
     Classrooms.findOne(_id: @value.bot.classRoom).num

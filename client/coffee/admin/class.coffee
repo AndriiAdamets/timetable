@@ -81,15 +81,14 @@ Template.adminBotCell.isntEmpty = ->
 
 Template.adminTopEmptyCell.events
   'click': (e) ->
-    console.log @parent
     Session.set 'edit_modal/selected_type', 'top'
 
 Template.adminClass.events
-  'click': ->
-    console.log 'val:', @value
+  'click': (e) ->
+    if $(e.target).hasClass('killAll') or $(e.target).hasClass('icon-trash')
+      return
     Session.set 'edit_modal/selected_dayNo', @value.dayNo
     Session.set 'edit_modal/selected_classNo', @value.classNo
     Session.set 'edit_modal/selected_classroom', @value.classRoom
-    console.log 'ClassNo:', Session.get 'edit_modal/selected_classNo'
     templateRender 'editClassModal'
     $('#editClassModal').modal 'show'
