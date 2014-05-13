@@ -9,7 +9,7 @@ Template.editClassModal.rendered = ->
   groups.classNo = Session.get 'edit_modal/selected_classNo'
   groups.dayNo = Session.get 'edit_modal/selected_dayNo'
   groups.type = data.type
-  groups.classRoom = Session.get 'selected_classroom'
+  groups.classRoom = Session.get 'edit_modal/selected_classroom'
   groups = _.uniq(_(Timetable.find(groups).fetch()).pluck "group", false)
   Session.set 'edit_modal/selected_groups', groups
   Session.set 'edit_modal/selected_lecturer', data.lecturer
@@ -69,12 +69,28 @@ Template.editClassModal.loadingClassrooms =->
 
 Template.editClassModal.currentGroups = ->
   cur_groups = Session.get('edit_modal/selected_groups')
-  console.log cur_groups.length
   cur_groups = [] if (typeof(cur_groups) is 'undefined')
   selector = {}
   selector._id = {$in: cur_groups} if (cur_groups and cur_groups.length > 0)
   cur_groups = Groups.find(selector) if cur_groups.length > 0
+  studentsCount = _(Groups.find(selector).fetch()).pluck "Persons", false
+  studentsCount = _.reduce(
+    studentsCount,
+    (memo, num) -> memo += num,
+    0
+    )
+  Session.set 'edit_modal/students_count', studentsCount
   cur_groups
+
+Template.editClassModal.classRoomines = ->
+  roomines = Classrooms.findOne(Session.get 'edit_modal/selected_classroom').roomines
+  Session.set 'edit_modal/roomines', roomines
+  roomines
+Template.editClassModal.studentsCount = ->
+  Session.get 'edit_modal/students_count'
+Template.editClassModal.filledPlace = ->
+  Session.get('edit_modal/students_count')/Session.get('edit_modal/roomines')*100
+
 
 Template.editClassModal.currentLecturer = ->
   Lecturers.findOne(Session.get 'edit_modal/selected_lecturer')
@@ -160,13 +176,26 @@ Template.editClassModal.events
     selector.classNo = Session.get 'edit_modal/selected_classNo'
     selector.classRoom = Session.get 'edit_modal/selected_classroom'
     type = Session.get 'edit_modal/selected_type'
+    groups = Session.get 'edit_modal/selected_groups'
     if type isnt 'all' and ((typeof oldClass isnt 'undefined') and oldClass.type isnt 'all')
-      selector.type =type
+      selector.type = type
     Meteor.call 'removeLesson', selector
+    # --------Group-----------
+    delete selector.classRoom
+    if selector.type = 'all'
+      selector.type = {$in: ['all', 'top', 'bot']}
+    selector.group = {$in: groups}
+    Meteor.call 'removeLesson', selector
+    # ------------------------
+    # ----lecturer------------
+    delete selector.group
+    selector.lecturer = Session.get 'edit_modal/selected_lecturer'
+    Meteor.call 'removeLesson', selector
+    # ------------------------
     selector.type = type
     selector.lecturer = Session.get 'edit_modal/selected_lecturer'
     selector.subject = Session.get 'edit_modal/selected_subject'
-    groups = Session.get 'edit_modal/selected_groups'
+    selector.classRoom = Session.get 'edit_modal/selected_classroom'
     for i in groups
       console.log selector.type
       selector.group = i

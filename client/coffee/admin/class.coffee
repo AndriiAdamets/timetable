@@ -42,7 +42,6 @@ Template.adminTopCell.events
       selector.classNo = @value.top.classNo
       selector.type = @value.top.type
       selector.classRoom = @value.top.classRoom
-      console.log 'Selector', selector
       Meteor.call 'removeLesson', selector
     else
       Session.set 'edit_modal/class', @value.top
@@ -69,7 +68,6 @@ Template.adminBotCell.events
       # selector.classNo = @value.bot.classNo
       selector.type = @value.bot.type
       # selector.classRoom = @value.bot.classRoom
-      console.log 'Selector', selector
       Meteor.call 'removeLesson', selector
     else
       Session.set 'edit_modal/class', @value.bot
