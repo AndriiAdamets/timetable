@@ -70,10 +70,12 @@ Template.editClassModal.loadingClassrooms =->
 Template.editClassModal.currentGroups = ->
   cur_groups = Session.get('edit_modal/selected_groups')
   cur_groups = [] if (typeof(cur_groups) is 'undefined')
+  studentsCount = []
   selector = {}
   selector._id = {$in: cur_groups} if (cur_groups and cur_groups.length > 0)
-  cur_groups = Groups.find(selector) if cur_groups.length > 0
-  studentsCount = _(Groups.find(selector).fetch()).pluck "Persons", false
+  if cur_groups.length > 0
+    cur_groups = Groups.find(selector)
+    studentsCount = _(Groups.find(selector).fetch()).pluck "Persons", false
   studentsCount = _.reduce(
     studentsCount,
     (memo, num) -> memo += num,
@@ -83,13 +85,19 @@ Template.editClassModal.currentGroups = ->
   cur_groups
 
 Template.editClassModal.classRoomines = ->
+  # console.log Session.get 'edit_modal/selected_classroom'
   roomines = Classrooms.findOne(Session.get 'edit_modal/selected_classroom').roomines
+  # console.log roomines
   Session.set 'edit_modal/roomines', roomines
   roomines
+
 Template.editClassModal.studentsCount = ->
   Session.get 'edit_modal/students_count'
 Template.editClassModal.filledPlace = ->
   Session.get('edit_modal/students_count')/Session.get('edit_modal/roomines')*100
+
+Template.editClassModal.classroomFull = ->
+  Session.get('edit_modal/students_count') > Session.get('edit_modal/roomines')
 
 
 Template.editClassModal.currentLecturer = ->

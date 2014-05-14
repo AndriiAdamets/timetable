@@ -162,12 +162,16 @@
         </div>
         <div class="control-group">
           <div class="row-fluid">
+            {{#if classroomFull}}
+            <div class="span12 alert alert-danger">СОСАТЬ!!!</div>
+            {{/if}}
+          </div>
+          <div class="row-fluid">
             <div class="span12">
             <span>Занято</span>
             <strong>&nbsp;{{studentsCount}}</strong>
             <span>&nbsp;мест из&nbsp;{{classRoomines}}</span>
             </div>
-
           </div>
           <div class="row-fluid">
             <div class="progress">
