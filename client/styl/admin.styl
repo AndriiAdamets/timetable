@@ -1,14 +1,24 @@
-td > a
-  float: right
-  margin-top: -8px
-  margin-right: -8px
-  cursor: pointer
+.side-nav
+  position: fixed
+tible, tible *
+  width: auto !important
+#timetable_editable
+  tbody
+    cursor: pointer
+    td > a
+      float: right
+      margin-top: -8px
+      margin-right: -8px
+
+td input
+  width: 150px
 
 #editClassModal
   height: 438px
   .modal-body
     height:
-      300px
+      367px
+    padding-bottom: 0px
     form
       margin: 0px
     .control-group:last-of-type
@@ -45,13 +55,13 @@ td > a
 
     .control-group:nth-of-type(1)
       ul
-        max-height: 271px
+        max-height: 246px
     .control-group:nth-of-type(2)
       ul
-        max-height: 221px
+        max-height: 196px
     .control-group:nth-of-type(3)
       ul
-        max-height: 171px
+        max-height: 146px
     .radio.inline.control-label
     // .control-label
       text-align: left

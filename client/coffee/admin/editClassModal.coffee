@@ -86,6 +86,7 @@ Template.editClassModal.currentGroups = ->
 
 Template.editClassModal.classRoomines = ->
   # console.log Session.get 'edit_modal/selected_classroom'
+  console.log Session.get 'edit_modal/selected_classroom'
   roomines = Classrooms.findOne(Session.get 'edit_modal/selected_classroom').roomines
   # console.log roomines
   Session.set 'edit_modal/roomines', roomines
