@@ -15,6 +15,9 @@
 </Template>
 
 <Template name="tablesContainer">
+  {{#if edit_admin}}
+    {{> EditProfile}}
+  {{/if}}
   {{#if display_groups}}
     {{> groupsTable}}
   {{/if}}
@@ -35,6 +38,9 @@
 <Template name="leftSideAdminMenu">
   <div class="side-nav well">
     <ul class="nav nav-list">
+      <li class="admin_leftside_menu_item" value="editAdmin">
+        <a>Профиль</a>
+      </li>
       <li class="admin_leftside_menu_item" value="groups">
         <a>Группы</a>
       </li>

@@ -16,7 +16,6 @@ Template.leftSideAdminMenu.rendered = ->
     $(item).removeClass "active"
   $(items[0]).addClass "active"
   $("#admin_page_header").text $(".admin_leftside_menu_item.active a").text()
-
   Session.set "displayed_table", $(items[0]).attr "value"
 
 Template.leftSideAdminMenu.events
@@ -31,6 +30,9 @@ Template.leftSideAdminMenu.events
     $(li).addClass "active"
     Session.set "displayed_table", li.attr "value"
     $("#admin_page_header").text $(li).text()
+
+Template.tablesContainer.edit_admin = ->
+  Session.equals 'displayed_table', 'editAdmin'
 
 Template.tablesContainer.display_groups = ->
   Session.equals "displayed_table", "groups"
