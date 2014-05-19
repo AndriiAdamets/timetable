@@ -70,6 +70,9 @@ Template.groupsTable.events
       Persons: persons
       )
     # Groups.update({_id:@_id}, {$set:{Title:cells[0].innerHTML}})
+  "blur td": (e)->
+    cells = $(e.target).parent().find "td"
+    Groups.update({_id: @_id}, {$set:{Title: cells[0].innerHTML, Type: cells[1].innerHTML, Department: cells[3].innerHTML, Year: cells[2].innerHTML, Persons: cells[4].innerHTML}})
 
 
 Template.lecturersTable.lecturers = ->
