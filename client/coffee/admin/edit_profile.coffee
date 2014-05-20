@@ -1,6 +1,12 @@
 Template.EditProfile.username = ->
-  console.log Meteor.users.find().fetch().usrname
-  Meteor.users.find().fetch().usrname
+  console.log Meteor.user().username
+  Meteor.user().username
 
 Template.EditProfile.email = ->
-  Meteor.users.find().fetch().email
+  Meteor.user().emails[0].address
+
+# Template.EditProfile.newEmail = ->
+#   $('input[name="email"]').val() != Meteor.user().emails[0].address
+
+Template.EditProfile.mailNotVerified = ->
+  Meteor.user().emails[0].verified isnt true

@@ -1,8 +1,14 @@
 <Template name='EditProfile'>
   <label>Имя пользователя</label>
   <input name='username' value='{{username}}'>
+   <a id='срфтпуГіуктфьу' type='button' class='btn btn-primary'>Изменить имя пользователя</a>
+
   <label>Пароль</label>
   <input type='password' value="1">
+    <a id='changePassword' type='button' class='btn btn-primary'>Изменить пароль</a>
   <label>Email</label>
   <input name='email' value='{{email}}'>
+  {{#if mailNotVerified}}
+    <a id='verifyMail' type='button' class='btn btn-primary'>Подтвердить адресс электронной почты</a>
+  {{/if}}
 </Template>
