@@ -1,9 +1,3 @@
-# Lecturer {Surname, Name, e-mail, phone}
-# Student {Name, group, email}
-# Subject {Title, Description}
-# Group {Title, type, department, year} type can be bachelor, specialist or master
-# Classroom {num, roomines}
-# Titmetable {GroupID, SubjectID, LecturerID, dayNo, weekNum, classNo, classRoom}
 Lecturers = new Meteor.Collection 'lecturers'
 Students = new Meteor.Collection 'students'
 Subjects = new Meteor.Collection 'subjects'

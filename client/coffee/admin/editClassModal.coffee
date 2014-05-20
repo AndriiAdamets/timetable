@@ -85,10 +85,7 @@ Template.editClassModal.currentGroups = ->
   cur_groups
 
 Template.editClassModal.classRoomines = ->
-  # console.log Session.get 'edit_modal/selected_classroom'
-  console.log Session.get 'edit_modal/selected_classroom'
   roomines = Classrooms.findOne(Session.get 'edit_modal/selected_classroom').roomines
-  # console.log roomines
   Session.set 'edit_modal/roomines', roomines
   roomines
 
@@ -206,7 +203,6 @@ Template.editClassModal.events
     selector.subject = Session.get 'edit_modal/selected_subject'
     selector.classRoom = Session.get 'edit_modal/selected_classroom'
     for i in groups
-      console.log selector.type
       selector.group = i
       Timetable.insert selector
     $('#editClassModal').modal 'hide'

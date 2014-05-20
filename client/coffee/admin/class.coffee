@@ -2,7 +2,8 @@ Template.adminAllCell.first = ->
   Subjects.findOne(@value.all.subject).Title
 
 Template.adminAllCell.second = ->
-  Lecturers.findOne(_id: @value.all.lecturer).Surname
+  lecturer = Lecturers.findOne(_id: @value.all.lecturer)
+  "#{lecturer.Surname} #{lecturer.Name[0]}. #{lecturer.Patronymic[0]}."
 
 Template.adminAllCell.third = ->
   @value.all.groups
@@ -29,7 +30,8 @@ Template.adminTopCell.first = ->
   Subjects.findOne(@value.top.subject).Title
 
 Template.adminTopCell.second = ->
-  Lecturers.findOne(_id: @value.top.lecturer).Surname
+  lecturer = Lecturers.findOne(_id: @value.top.lecturer)
+  "#{lecturer.Surname} #{lecturer.Name[0]}. #{lecturer.Patronymic[0]}."
 
 Template.adminTopCell.third = ->
   @value.top.groups
@@ -55,7 +57,8 @@ Template.adminBotCell.first = ->
   Subjects.findOne(@value.bot.subject).Title
 
 Template.adminBotCell.second = ->
-  Lecturers.findOne(_id: @value.bot.lecturer).Surname
+  lecturer = Lecturers.findOne(_id: @value.bot.lecturer)
+  "#{lecturer.Surname} #{lecturer.Name[0]}. #{lecturer.Patronymic[0]}."
 
 Template.adminBotCell.third = ->
   @value.bot.groups
@@ -88,5 +91,6 @@ Template.adminClass.events
     Session.set 'edit_modal/selected_dayNo', @value.dayNo
     Session.set 'edit_modal/selected_classNo', @value.classNo
     Session.set 'edit_modal/selected_classroom', @value.classRoom
+      , 200
     templateRender 'editClassModal'
     $('#editClassModal').modal 'show'
