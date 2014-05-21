@@ -5,14 +5,21 @@ Groups = new Meteor.Collection 'groups'
 Classrooms = new Meteor.Collection 'classrooms'
 Timetable = new Meteor.Collection 'timetable'
 
-Meteor.startup ->
-  Accounts.emailTemplates.siteName = "AwesomeSite"
-  Accounts.emailTemplates.from = "AwesomeSite Admin <accounts@example.com>"
-  Accounts.emailTemplates.enrollAccount.subject = (user) ->
-    "Welcome to Awesome Town, " + user.profile.name
+Accounts.config
+  sendVerificationEmail: true
+  forbidClientAccountCreation: false
 
-  Accounts.emailTemplates.verifyEmail.text = (user, url) ->
-    "You have been selected to participate in building a better future!" + " To activate your account, simply click the link below:\n\n" + url
+  process.env.MAIL_URL="smtp://andrey.adamets:!megadeth2601@smtp.gmail.com:465/";
+
+Accounts.emailTemplates.siteName = "Сайт расписания Донецкого Национального Университета"
+Accounts.emailTemplates.from = "Администратор <andrey.adamets@gmail.com>"
+Accounts.emailTemplates.enrollAccount.subject = (user) ->
+  "Welcome to Awesome Town, " + user.profile.name
+
+Accounts.emailTemplates.verifyEmail.text = (user, url) ->
+  "You have been selected to participate in building a better future!" + " To activate your account, simply click the link below:\n\n" + url
+
+Meteor.startup ->
 
   #console.log 'Server started'
   if Meteor.users.find().count() is 0
@@ -635,3 +642,6 @@ Meteor.publish 'timetable', ->
 Meteor.methods
   removeLesson: (selector) ->
     Timetable.remove selector
+
+  sendVerificationMail: (id) ->
+    Accounts.sendVerificationEmail id

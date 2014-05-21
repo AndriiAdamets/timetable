@@ -32,3 +32,6 @@ Template.EditProfile.events
     Session.set 'username_input_changed', !(Meteor.user().username == $('input[name="username"]').val())
   'keyup input[name="email"]': ->
     Session.set 'email_input_changed', !(Meteor.user().emails[0].address == $('input[name="email"]').val())
+
+  'click #verifyMail': ->
+    Meteor.call 'sendVerificationMail', Meteor.user()._id
