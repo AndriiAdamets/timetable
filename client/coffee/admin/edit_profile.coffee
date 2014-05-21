@@ -10,25 +10,25 @@ Template.EditProfile.username = ->
   Session.get 'username'
 
 Template.EditProfile.usernameChanged = ->
-  Session.equals 'username_input_changed', true
+  Session.get 'username_input_changed'
 
 Template.EditProfile.email = ->
   Session.get 'email_address'
 
 Template.EditProfile.inputEmailChanged = ->
-  Session.equals 'email_input_changed', true
+  Session.get 'email_input_changed'
 
 Template.EditProfile.inputPasswordChanged = ->
-  Session.equals 'password_input_changed', true
+  Session.get 'password_input_changed'
+
 
 Template.EditProfile.mailNotVerified = ->
-  Session.equals 'email_verified', false
+  (Session.equals 'email_verified', false) and (Session.equals 'email_input_changed', false)
 
 Template.EditProfile.events
   'keyup input[name="userpass"]': ->
     Session.set 'password_input_changed', true
   'keyup input[name="username"]': ->
-    console.log 'username:', Session.get 'username'
-    console.log 'val:', $('input[name="username"]').val()
-    console.log 'as', Meteor.user().username == $('input[name="username"]').val()
     Session.set 'username_input_changed', !(Meteor.user().username == $('input[name="username"]').val())
+  'keyup input[name="email"]': ->
+    Session.set 'email_input_changed', !(Meteor.user().emails[0].address == $('input[name="email"]').val())
