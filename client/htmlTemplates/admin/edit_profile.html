@@ -1,20 +1,41 @@
 <Template name='EditProfile'>
-  <label>Имя пользователя</label>
-  <input name='username' value='{{username}}'>
-  {{#if usernameChanged}}
-    <a id='changeUsername' type='button' class='btn btn-primary'>Изменить имя пользователя</a>
-  {{/if}}
-  <label>Пароль</label>
-  <input type='password' name='userpass' value="1">
-  {{#if inputPasswordChanged}}
-    <a id='changePassword' type='button' class='btn btn-primary'>Изменить пароль</a>
-  {{/if}}
-  <label>Email</label>
-  <input name='email' value='{{email}}'>
-  {{#if inputEmailChanged}}
-    <a id='newMail' type='button' class='btn btn-primary'>Новый адресс электронной почты</a>
-  {{/if}}
-  {{#if mailNotVerified}}
-    <a id='verifyMail' type='button' class='btn btn-primary'>Подтвердить адресс электронной почты</a>
-  {{/if}}
+  <form class="form-inline">
+    <label>Имя пользователя</label>
+    <input name='username' value='{{username}}'>
+    {{#if usernameChanged}}
+      <a id='changeUsername' type='button' class='btn btn-primary'>Изменить имя пользователя</a>
+      {{#if loginChanged}}
+        <div class="alert alert-success">
+          <a class="close" data-dismiss="alert" href="#">&times;</a>
+          Имя пользователя было успешно изменено
+        </div>
+      {{/if}}
+    {{/if}}
+  </form>
+  <form class="form-inline">
+    <label>Пароль</label>
+    <input type='password' name='userpass' value="11112222">
+    {{#if inputPasswordChanged}}
+      <input type='password' name='confirmpass' placeholder='Повторите новый пароль'>
+      {{#if passEqual}}
+        <a id='changePassword' type='button' class='btn btn-primary'>Изменить пароль</a>
+        {{#if PasswordChanged}}
+        <div class="alert alert-success">
+          <a class="close" data-dismiss="alert" href="#">&times;</a>
+          Ваш пароль был успешно изменён
+        </div>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  </form>
+  <form class="form-inline">
+    <label>Email</label>
+    <input name='email' type='email' value='{{email}}'>
+    {{#if inputEmailChanged}}
+      <a id='newMail' type='button' class='btn btn-primary'>Новый адресс электронной почты</a>
+    {{/if}}
+    {{#if mailNotVerified}}
+      <a id='verifyMail' type='button' class='btn btn-primary'>Подтвердить адресс электронной почты</a>
+    {{/if}}
+  </form>
 </Template>

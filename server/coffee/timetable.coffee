@@ -643,5 +643,20 @@ Meteor.methods
   removeLesson: (selector) ->
     Timetable.remove selector
 
-  sendVerificationMail: (id) ->
-    Accounts.sendVerificationEmail id
+  sendVerificationMail: () ->
+    # Accounts.sendVerificationEmail Meteor.user()._id
+
+  sendResetPasswordMail: ->
+    Accounts.sendResetPasswordEmail Meteor.user()._id
+  newLogin: (newLogin) ->
+    Meteor.users.update Meteor.user()._id, username: newLogin
+  newEmail: (newEmail) ->
+    Meteor.users.update Meteor.user()._id,
+      $set:
+        emails: [
+          address: newEmail
+          verified: false
+        ]
+
+  newPassword: (newPassword) ->
+    Accounts.setPassword Meteor.user()._id, newPassword
