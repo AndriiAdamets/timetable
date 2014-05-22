@@ -91,6 +91,5 @@ Template.adminClass.events
     Session.set 'edit_modal/selected_dayNo', @value.dayNo
     Session.set 'edit_modal/selected_classNo', @value.classNo
     Session.set 'edit_modal/selected_classroom', @value.classRoom
-      , 200
     templateRender 'editClassModal'
     $('#editClassModal').modal 'show'
