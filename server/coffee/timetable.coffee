@@ -4,6 +4,7 @@ Subjects = new Meteor.Collection 'subjects'
 Groups = new Meteor.Collection 'groups'
 Classrooms = new Meteor.Collection 'classrooms'
 Timetable = new Meteor.Collection 'timetable'
+UpdateDate = new Meteor.Collection 'updatedate'
 
 Accounts.config
   sendVerificationEmail: true
@@ -20,7 +21,6 @@ Accounts.emailTemplates.verifyEmail.text = (user, url) ->
   "You have been selected to participate in building a better future!" + " To activate your account, simply click the link below:\n\n" + url
 
 Meteor.startup ->
-
   #console.log 'Server started'
   if Meteor.users.find().count() is 0
     adm =
@@ -32,6 +32,11 @@ Meteor.startup ->
     Accounts.createUser adm
   else
     console.log Meteor.users.find().count()+' users in DB'
+
+  if UpdateDate.find().count() is 0
+    console.log 'ONonono!'
+    date = new Date()
+    UpdateDate.insert(updatedDate: date)
 
   if Lecturers.find().count() is 0
     Lecturers.insert(
@@ -638,6 +643,9 @@ Meteor.publish 'classrooms', ->
     Classrooms.find()
 Meteor.publish 'timetable', ->
     Timetable.find()
+
+Meteor.publish 'updatedate', ->
+  UpdateDate.find()
 
 Meteor.methods
   removeLesson: (selector) ->

@@ -5,12 +5,14 @@ window.Timetable = new Meteor.Collection "timetable"
 window.Subjects = new Meteor.Collection "subjects"
 window.Groups = new Meteor.Collection "groups"
 window.Classrooms = new Meteor.Collection "classrooms"
+window.UpdateDate = new Meteor.Collection 'updatedate'
 
 window.TimetableHandle = Meteor.subscribe "timetable"
 window.LecturersHandle = Meteor.subscribe "lecturers"
 window.SubjectsHandle = Meteor.subscribe "subjects"
 window.GroupsHandle = Meteor.subscribe "groups"
 window.ClassroomsHandle = Meteor.subscribe "classrooms"
+window.UpdateDateHandle = Meteor.subscribe 'updatedate'
 
 Meteor.startup ->
   Session.set "displayed_for", "groups"
@@ -20,8 +22,12 @@ Meteor.startup ->
   Session.set "showEmptyClasses", true
   $('#cb_showEmptyClasses').prop("checked", true)
 
+Template.mainTemplate.dateLoading = ->
+  UpdateDateHandle and not UpdateDateHandle.ready()
 
-
+Template.mainTemplate.timetableUpdated = ->
+  date = UpdateDate.find().fetch()[0].updatedDate
+  "#{date.getDate()}.#{('0' + (date.getMonth() + 1)).slice(-2)}.#{date.getFullYear()}"
 
 
 Template.leftSideMenu.days = ->

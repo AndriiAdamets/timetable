@@ -8,6 +8,13 @@
 <Template name="mainTemplate">
   {{> mainNavbar}}
   <h1 class="main-header">Расписание занятий физико-технического факультета</h1>
+  {{#if dateLoading}}
+    Идёт загрузка
+  {{else}}
+    <strong>Данные обнавлены
+      {{timetableUpdated}}
+    </strong>
+  {{/if}}
   <hr>
   <div class="container">
     <div class="row-fluid">
