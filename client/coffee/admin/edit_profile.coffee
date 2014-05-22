@@ -30,29 +30,40 @@ Template.EditProfile.loginChanged = ->
 Template.EditProfile.PasswordChanged = ->
   Session.get 'PasswordChanged'
 
+Template.EditProfile.verifySended = ->
+  Session.get 'verifySended'
 
 
 Template.EditProfile.mailNotVerified = ->
   (Session.equals 'email_verified', false) and (Session.equals 'email_input_changed', false)
 
 Template.EditProfile.events
+
   'keyup input[name="userpass"]': ->
     Session.set 'password_input_changed', true
+
   'keyup input[name="username"]': ->
     Session.set 'username_input_changed', !(Meteor.user().username == $('input[name="username"]').val())
+
   'keyup input[name="email"]': ->
     Session.set 'email_input_changed', !(Meteor.user().emails[0].address == $('input[name="email"]').val())
+
   'keyup input[name="userpass"],input[name="confirmpass"]': ->
       Session.set 'passEqual', $('input[name="userpass"]').val() is $('input[name="confirmpass"]').val()
+
   'click #changeUsername': ->
     Meteor.call 'newLogin', $('input[name="username"]').val()
     console.log Meteor.user()
     Session.set 'loginChanged', true
+
   'click #newMail': ->
     Meteor.call 'newEmail', $('input[name="email"]').val()
     Session.set 'email_input_changed', false
+
   'click #verifyMail': ->
     Meteor.call 'sendVerificationMail'
+    Session.set 'verifySended', true
+
   'click #changePassword': ->
     Meteor.call('newPassword', $('input[name="userpass"]').val())
     Session.set 'PasswordChanged', true

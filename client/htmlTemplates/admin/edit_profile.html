@@ -36,6 +36,12 @@
     {{/if}}
     {{#if mailNotVerified}}
       <a id='verifyMail' type='button' class='btn btn-primary'>Подтвердить адресс электронной почты</a>
+      {{#if verifySended}}
+        <div class="alert alert-success">
+          <a class="close" data-dismiss="alert" href="#">&times;</a>
+          На указанный адресс было выслано письмо с инструкциями о подтверждении почтового ящика
+        </div>
+      {{/if}}
     {{/if}}
   </form>
 </Template>

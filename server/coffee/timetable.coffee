@@ -12,13 +12,8 @@ Accounts.config
 
   process.env.MAIL_URL="smtp://andrey.adamets:!megadeth2601@smtp.gmail.com:465/";
 
-Accounts.emailTemplates.siteName = "Сайт расписания Донецкого Национального Университета"
+Accounts.emailTemplates.siteName = "Сайт оповещения Донецкого Национального Университета"
 Accounts.emailTemplates.from = "Администратор <andrey.adamets@gmail.com>"
-Accounts.emailTemplates.enrollAccount.subject = (user) ->
-  "Welcome to Awesome Town, " + user.profile.name
-
-Accounts.emailTemplates.verifyEmail.text = (user, url) ->
-  "You have been selected to participate in building a better future!" + " To activate your account, simply click the link below:\n\n" + url
 
 Meteor.startup ->
   #console.log 'Server started'
@@ -34,7 +29,6 @@ Meteor.startup ->
     console.log Meteor.users.find().count()+' users in DB'
 
   if UpdateDate.find().count() is 0
-    console.log 'ONonono!'
     date = new Date()
     UpdateDate.insert(updatedDate: date)
 
@@ -652,12 +646,28 @@ Meteor.methods
     Timetable.remove selector
 
   sendVerificationMail: () ->
-    # Accounts.sendVerificationEmail Meteor.user()._id
+    Accounts.emailTemplates.enrollAccount.subject = (user) ->
+      "Добро пожаловать на сайт расписания кафедры компьютерных технологий физико-технического факультета ДонНУ, " + user.profile.name
 
-  sendResetPasswordMail: ->
-    Accounts.sendResetPasswordEmail Meteor.user()._id
+    Accounts.emailTemplates.verifyEmail.text = (user, url) ->
+      "Вы выбрали поддтверждение адреса электронной почты" + " Для подтверждения адреса перейдите по ссылке, указанной ниже:\n\n" + url
+
+    Accounts.emailTemplates.verifyEmail.text = (user, url) ->
+      "Вы выбрали поддтверждение адреса электронной почты" + " Для подтверждения адреса перейдите по ссылке, указанной ниже:\n\n" + url
+    Accounts.sendVerificationEmail Meteor.user()._id
+
+  sendResetPasswordMail: (email)->
+    acc = Meteor.users.find({ emails: { $elemMatch: {
+      address: email
+      verified: true
+      } } }).fetch()[0]
+    return false unless acc
+    Accounts.sendResetPasswordEmail acc._id
+    true
+
   newLogin: (newLogin) ->
     Meteor.users.update Meteor.user()._id, username: newLogin
+
   newEmail: (newEmail) ->
     Meteor.users.update Meteor.user()._id,
       $set:

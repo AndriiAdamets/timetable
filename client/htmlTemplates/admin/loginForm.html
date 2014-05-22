@@ -4,10 +4,24 @@
       <h2 class="form-signin-heading">Введите логин и пароль</h2>
       <input id="login" type="text" class="input-block-level" placeholder="Логин" autocomplete="off" keyev="true" clickev="true">
       <input id="password" type="password" class="input-block-level" placeholder="Пароль" autocomplete="off" keyev="true" clickev="true">
-      <div id="signinError" class="alert alert-error" style="display: none;">Неверный логин или пароль</div>
-      <p>
-        <a if='forgotPassword' class="btn btn-primary">Забыл пароль</a>
-      </p>
+      <div id="signinError" class="alert alert-error" style="display: none;">
+        Неверный логин или пароль
+        <a id='forgotPassword'>Забыли пароль?</a>
+        {{#if forgotPassword}}
+          <p>Введите адрес электронной почты, с которой связана ваша учётная запись</p>
+          <form class="form-inline">
+            <input name='email' type='email' placeholder='Адрес электронной почты'>
+            <a id='resetPassword' class="btn btn-primary">Восстановить пароль</a>
+            {{#if emailNotFound}}
+              <p>Указанный адресс не зарегистрирован, либо не подтверждён</p>
+            {{/if}}
+
+            {{#if resetSucces}}
+              <p>На указанный адресс было выслано письмо с инструкциями о восстановлении пароля</p>
+            {{/if}}
+          </form>
+        {{/if}}
+        </div>
       <button class="btn btn-large btn-primary" type="submit">Войти</button>
     </form>
   </div>

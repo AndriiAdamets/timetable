@@ -14,6 +14,10 @@ window.GroupsHandle = Meteor.subscribe "groups"
 window.ClassroomsHandle = Meteor.subscribe "classrooms"
 window.UpdateDateHandle = Meteor.subscribe 'updatedate'
 
+window.updateDBDate = ->
+  date = new Date()
+  UpdateDate.update {_id: UpdateDate.find().fetch()[0]._id}, updatedDate: date
+
 Meteor.startup ->
   Session.set "displayed_for", "groups"
   Session.set "displayedGroup", undefined
@@ -27,7 +31,7 @@ Template.mainTemplate.dateLoading = ->
 
 Template.mainTemplate.timetableUpdated = ->
   date = UpdateDate.find().fetch()[0].updatedDate
-  "#{date.getDate()}.#{('0' + (date.getMonth() + 1)).slice(-2)}.#{date.getFullYear()}"
+  "#{date.getDate()}.#{('0' + (date.getMonth() + 1)).slice(-2)}.#{date.getFullYear()} в #{('0' + (date.getHours())).slice(-2)}:#{('0' + (date.getMinutes())).slice(-2)}"
 
 
 Template.leftSideMenu.days = ->

@@ -206,6 +206,7 @@ Template.editClassModal.events
       selector.group = i
       Timetable.insert selector
     $('#editClassModal').modal 'hide'
+    updateDBDate()
 
 Template.editClassModal.classroomUndefined = ->
   Session.get 'undefinedClassroom'
