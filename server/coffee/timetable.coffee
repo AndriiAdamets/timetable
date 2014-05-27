@@ -10,7 +10,7 @@ Accounts.config
   sendVerificationEmail: true
   forbidClientAccountCreation: false
 
-  process.env.MAIL_URL="smtp://andrey.adamets:!megadeth2601@smtp.gmail.com:465/";
+  process.env.MAIL_URL="smtp://login:!password@smtp.gmail.com:465/";
 
 Accounts.emailTemplates.siteName = "Сайт оповещения Донецкого Национального Университета"
 Accounts.emailTemplates.from = "Администратор <andrey.adamets@gmail.com>"
